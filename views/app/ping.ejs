@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../common/head %>
+</head>
+<body>
+    <% include ../common/navigation %>
+    <div class='container' style='min-height: 450px'><div class='row'><div class='col-md-12'>
+
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class='page-header'>
+                    <h2>Test System Connectivity</h2>
+                </div>
+
+                <div class='page-body'>
+                <form id="ping" name="ping" action="/app/ping" method="post">
+                    <fieldset>
+
+                        <div class="form-group ">
+                            <label class="  control-label" for="ping_address">Address </label>
+                            <div class="  controls">
+
+                                <input type="text" name="address" value="" id="ping_address" class="form-control" placeholder="Enter public IP address" />
+                            </div>
+                        </div>
+
+                        <input type="submit" value="Submit" id="ping_0" class="btn btn-primary" />
+
+                    </fieldset>
+                </form>
+                </div>
+            </div>
+         </div>
+
+            <% if(output) { %>
+            <div class='row'>
+                <div class='col-md-12'>
+                    <h2>Command Output</h2>
+                    <hr/>
+                    
+                    <pre><%= output %></pre>
+
+                </div>
+            </div>
+            <% } %>
+
+
+    </div></div></div>
+    <% include ../common/footer %>
+</body>
+</html>

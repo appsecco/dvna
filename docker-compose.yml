@@ -1,0 +1,24 @@
+# Damn Vulnerable NodeJS Application
+
+version: "2.1"
+services:
+  app:
+    build: ./
+    ports:
+      - 9090:9090
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+    env_file:
+      - ./.env
+
+  mysql-db:
+    image: mysql:5.7
+    expose:
+      - "3306"
+    env_file:
+      - ./.env
+    healthcheck:
+        test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+        timeout: 20s
+        retries: 10
