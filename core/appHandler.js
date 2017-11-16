@@ -48,7 +48,7 @@ module.exports.listProducts = function (req,res){
 }
 
 module.exports.productSearch = function (req,res){
-    db.Products.findAll({where:{name:{[Op.like]:req.body.name}}}).then( products => {
+    db.Product.findAll({where:{name:{[Op.like]:req.body.name}}}).then( products => {
     	output ={
     		products : products,
     		searchTerm: req.body.name
