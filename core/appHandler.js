@@ -1,7 +1,7 @@
 var db = require('../models')
 var vh = require('./validationHandler')
 var bCrypt = require('bcrypt')
-const exec = require('child_process').exec;
+const execFile = require('child_process').execFile;
 var mathjs = require('mathjs')
 const Op = db.Sequelize.Op
 
@@ -40,8 +40,8 @@ module.exports.userSearch = function (req, res) {
 
 module.exports.ping = function (req, res) {
 	if (vh.vIP(req.body.address)){
-		exec('ping -c 2 ' + req.body.address, function (err, stdout, stderr) {
-			output = stdout + stderr
+		execFile('ping', ['-c', '2', req.body.address] , function(err,stdout,stderr){
+		output = stdout + stderr
 			res.render('app/ping', {
 				output: output
 			})
