@@ -14,6 +14,13 @@ var createHash = function (password) {
 	return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
 }
 
+module.exports.isAdmin = function (req, res, next){
+    if(req.user.role=='admin')
+        next()
+    else
+        res.status(401).send('Unauthorized')
+}
+
 module.exports.isAuthenticated = function (req, res, next) {
 	if (req.isAuthenticated()) {
 		req.flash('authenticated', true)
