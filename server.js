@@ -23,7 +23,7 @@ app.use(xssFilter())
 
 // Intialize Session
 app.use(session({
-  secret: 'keyboard cat',
+  secret: config.sessionSecret,
   resave: true,
   saveUninitialized: true,
   cookie: { secure: false }
