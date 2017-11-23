@@ -29,6 +29,9 @@ app.use(session({
   cookie: { secure: false }
 }))
 
+// Disable X-Powered-By header
+app.disable('x-powered-by')
+
 // Initialize Passport
 app.use(passport.initialize())
 app.use(passport.session())
