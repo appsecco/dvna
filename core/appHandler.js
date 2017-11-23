@@ -264,7 +264,7 @@ module.exports.calc = function (req, res) {
 }
 
 module.exports.listUsersAPI = function (req, res) {
-	db.User.findAll({}).then(users => {
+	db.User.findAll({attributes: [ 'id' ,'name', 'email']}).then(users => {
 		res.status(200).json({
 			success: true,
 			users: users
