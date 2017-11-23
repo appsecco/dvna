@@ -156,9 +156,18 @@ module.exports.modifyProductSubmit = function (req, res) {
 			})
 		}else{
 			req.flash('danger', 'Input Validation Failed')
+			var output= {
+				product: {
+					id: req.body.id,
+					name: req.body.name,
+					code: req.body.code,
+					description: req.body.description,
+					tags: req.body.tags
+				}
+			}
 			res.render('app/modifyproduct', {
-				output: null
-			})			
+				output: output
+			})		
 		}
 	})
 }
