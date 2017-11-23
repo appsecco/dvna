@@ -16,11 +16,18 @@ http://127.0.0.1:9090/resetpw?login=<username>&token=<md5(username)>
 
 **Solution**
 
-Store the password reset request along with a randomly generated token string and expiry  
+Store the password reset request along with a randomly generated token string and expiry
 
 Email a reset link containing that token and username to the user
 
 Validate the reset token for the user before password reset
+
+**Fixes**
+
+Implemented in the following files
+
+- *core/authHandler.js*
+- *models/passreset.js*
 
 ## Insecure Session Secret
 
@@ -44,6 +51,13 @@ This allows an attacker to
 **Solution**
 
 Always use unique, long, secure random generated for secrets
+
+**Fixes**
+
+Implemented in the following files
+
+- *server.js*
+- *config/server.js*
 
 **Recommendation**
 

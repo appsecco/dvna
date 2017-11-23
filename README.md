@@ -1,24 +1,27 @@
 # Damn Vulnerable NodeJS Application (DVNA) 
 
-Damn Vulnerable NodeJS Application (DVNA) is a simple NodeJS application to demonstrate [**OWASP Top 10 Vulnerabilities**](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project#OWASP_Top_10_for_2013) and guide on fixing and avoiding these vulnerabilities
+Damn Vulnerable NodeJS Application (DVNA) is a simple NodeJS application to demonstrate [**OWASP Top 10 Vulnerabilities**](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project#OWASP_Top_10_for_2013) and guide on fixing and avoiding these vulnerabilities. The `fixes` branch will contain fixes for the vulnerabilities.
 
 The application is powered by commonly used libraries such as [express](https://www.npmjs.com/package/express), [passport](https://www.npmjs.com/package/passport), [sequelize](https://www.npmjs.com/package/sequelize), etc.
 
-A detailed guide on exploiting, fixing and avoiding OWASP Top 10 Vulnerabilities can be found at https://appsecco.github.io/dvna which will contain the following
+The application comes with a developer friendly comprehensive guide which can be used to learn, avoid and fix the vulnerabilities. The guide will be available at https://appsecco.github.io/dvna and will contain the following
 
-1. How to exploit the vulnerability
-2. Vulnerable code snippets and fixes
-3. Recommendations on how to avoid such bugs
-4. References for learning more
+1. Instructions for setting up DVNA
+2. Instructions on exploiting the vulnerabilities
+3. Vulnerable code snippets and instructions on fixing vulnerabilities
+4. Recommendations for avoid such vulnerabilities
+5. References for learning more
 
-## Dockerized Setup
+## Quick Start
+
+Setting up the application using docker is the recommended procedure. For detailed instructions and manual setup and please refer to the guide.
 
 Clone this repository
-```
+```bash
 git clone https://github.com/appsecco/dvna; cd dvna
 ```
 
-Create a `.env` file like the with desired database configuration
+Create a `vars.env` with the desired database configuration
 ```
 MYSQL_USER=dvna
 MYSQL_DATABASE=dvna
@@ -26,27 +29,21 @@ MYSQL_PASSWORD=passw0rd
 MYSQL_RANDOM_ROOT_PASSWORD=yes
 ```
 
-And run `docker-compose up` to start the application and database using docker.
-
-## Manual Setup
-
-For this, you will need to create a new database on a MySQL Server and a user with write access on it
-
-Clone this repository
-```
-git clone https://github.com/appsecco/dvna; cd dvna
-```
-
-Set the environment variables with your database information 
+Start the application and database using docker-compose
 ```bash
-export MYSQL_USER=dvna
-export MYSQL_DATABASE=dvna
-export MYSQL_PASSWORD=passw0rd
-export MYSQL_HOST=127.0.0.1
-export MYSQL_PORT=3306
+docker-compose up
 ```
 
-Then run `npm install` to install the dependencies and `npm start` to start the application
+Access the application at http://127.0.0.1:9090/ 
+
+The application will automatically reload on code changes, so feel free to patch and play around with the application.
+
+## TODO
+
+- Add CONTRIBUTING.md
+- Link commits to fixes in documentation
+- Add new vulnerabilities from OWASP Top 10 2017
+- Improve application features, documentation
 
 ## Thanks
 [Abhisek Datta - abhisek](https://github.com/abhisek) for application architecture and front-end code

@@ -31,7 +31,16 @@ else
  //dont
 ```
 
-Consider any user supplied information as untrusted and always validate user access by sessions
+In our case we can use passports user object at `req.user` for modifying user information
+
+**Fixes**
+
+Implemented in the following files
+
+- *core/appHandler.js*
+
+**Recommendataion**
+Consider any user supplied information as untrusted and always validate user access by sessions.
 
 **Reference**
 - https://www.owasp.org/index.php/Top_10_2013-A4-Insecure_Direct_Object_References

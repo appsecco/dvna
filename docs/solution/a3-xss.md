@@ -32,7 +32,14 @@ Ensure user supplied or any other untrusted data is not rendered as part of HTTP
 ```
 <%= output.searchTerm %>
 ```
-Notice the `=` symbol instead of `-`, which escapes the output
+Notice the `=` symbol instead of `-`, which escapes the output. Note that this only prevents xss when the target for escaped output is in a html context. 
+
+**Fixes**
+
+Implemented in the following files
+
+- *server.js*
+- *views/app/products.ejs*
 
 ## Stored XSS in Product Listing
 
@@ -61,7 +68,14 @@ Enable output string encoding
 <td><%= output.products[i].tags %></td>
 ...
 ```
-Notice the `=` symbol instead of `-`, which escapes the output
+Notice the `=` symbol instead of `-`, which escapes the output. Note that this only prevents xss when the target for escaped output is in a html context. 
+
+**Fixes**
+
+Implemented in the following files
+
+- *server.js*
+- *views/app/products.ejs*
 
 **Recommendation**
 

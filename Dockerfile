@@ -3,8 +3,6 @@ LABEL MAINTAINER "Subash SN"
 
 WORKDIR /app
 
-COPY . .
+RUN npm install -g nodemon
 
-RUN npm install
-
-CMD ["npm", "start"]
+CMD npm install ; nodemon

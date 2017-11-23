@@ -1,3 +1,5 @@
 node_modules/
+docs/_book
 npm-debug.log
-.env
+vars.env
+package-lock.json

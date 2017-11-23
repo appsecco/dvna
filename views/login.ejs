@@ -11,11 +11,14 @@
                 <div class='page-header'>
                     <h2>Login</h2>
                 </div>
-		    	<% if (messages.message) { %>
-		    		<div class="alert alert-success"><%= messages.message %></div>
-				<% } %>         
-		    	<% if (messages.error) { %>
-		    		<div class="alert alert-danger"><%= messages.error %></div>
+				<% if (messages.success) { %>
+					<div class="alert alert-success"><%=messages.success%></div>
+				<% } else if (messages.danger) { %>
+					<div class="alert alert-danger"><%= messages.danger %></div>
+				<% } else if (messages.warning) {%> 
+					<div class="alert alert-warning"><%= messages.warning %></div>
+				<% } else if (messages.info) {%> 
+					<div class="alert alert-info"><%= messages.info %></div>
 				<% } %>
                 <div class='page-body'>
 				<form id="login" name="login" action="/login" method="post">

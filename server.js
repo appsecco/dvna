@@ -4,34 +4,37 @@ var passport = require('passport')
 var session = require('express-session')
 var ejs = require('ejs')
 var morgan = require('morgan')
+var config = require('./config/server')
 
 //Initialize Express
 var app = express()
-
-//Configure passport
 require('./core/passport')(passport)
-
-//Configure App
 app.use(express.static('public'))
-app.use(morgan('combined')) // Logging
 app.set('view engine','ejs')
-//app.set('trust proxy', 1)
+app.use(morgan('tiny'))
 app.use(bodyParser.urlencoded({ extended: false }))
 
-// Always change default passwords and secrets. Always use secure cookies with HTTPS
+// For Reverse proxy support
+// app.set('trust proxy', 1) 
+
+// Intialize Session
 app.use(session({
   secret: 'keyboard cat',
-  resave: false,
+  resave: true,
   saveUninitialized: true,
   cookie: { secure: false }
 }))
 
+// Initialize Passport
 app.use(passport.initialize())
 app.use(passport.session())
+
+// Initialize express-flash
 app.use(require('express-flash')());
 
 // Routing
 app.use('/app',require('./routes/app')())
 app.use('/',require('./routes/main')(passport))
 
-app.listen(9090)
+// Start Server
+app.listen(config.port, config.listen)

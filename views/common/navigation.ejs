@@ -10,20 +10,7 @@
       <a class="navbar-brand" href="/"><i class='fa fa-bug'></i> Damn Vulnerable NodeJS Application</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
-      <ul class='nav navbar-nav'>
-
-      </ul>
       <ul class='nav navbar-nav navbar-right'>
-          <!--<li>
-            <a href="/assessment">
-                  <i class="fa fa-exchange"></i> Assessment Mode
-              </a>
-          </li>
-          <li>
-              <a href="/learn">
-                  <i class="fa fa-exchange"></i> Learning Mode
-              </a>
-          </li>-->
           <% if(messages.authenticated){ %>
           <li>
               <a href='/logout'>
@@ -32,6 +19,6 @@
           </li>
           <% } %>
       </ul>
-    </div><!--/.navbar-collapse -->
+    </div>
   </div>
 </nav>

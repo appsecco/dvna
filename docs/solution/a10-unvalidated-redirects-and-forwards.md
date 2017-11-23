@@ -29,5 +29,12 @@ http://127.0.0.1:9090/redirect.action?url=http://www.attacker.nxd/phising_page
 
 Use an interceptor page which requires user approval before external redirection
 
+**Fixes**
+
+Implemented in the following files
+
+- *views/app/redirect.ejs*
+- *core/appHandler.js*
+
 **Reference**
 - https://www.owasp.org/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet

@@ -26,12 +26,18 @@ This particular issue can be solved by using a try catch exception handling
 ```
 try{
     result = mathjs.eval(req.body.eqn)
-}catch{
+}catch (err){
     result = 'Invalid Equation'
 }
 ```
 
 But a bigger issue is the application running in development mode. Set **NODE_ENV** environment variable to `production`, this improves performance too!
+
+**Fixes**
+
+Implemented in the following files
+
+- *core/appHandler.js*
 
 ## X-Powered-By header
 
@@ -42,6 +48,12 @@ The `X-Powered-By : Express` header is sent by default in every response and dis
 **Solution**
 
 Disable it using  `app.disable('x-powered-by')` in express
+
+**Fixes**
+
+Implemented in the following files
+
+- *server.js*
 
 **Reference**
 - https://expressjs.com/en/advanced/best-practice-security.html

@@ -32,6 +32,12 @@ db.User.findAll({attributes: [ 'id' ,'name', 'email']},).then(users => {
     })
 ```
 
+**Fixes**
+
+Implemented in the following files
+
+- *core/appHandler.js*
+
 ## Logging of sensitive information
 
 ![info-dis](/resources/info-dis2.png "Password Hash Disclosed")
@@ -50,6 +56,12 @@ var sequelize = new Sequelize(config.database, config.username, config.password,
     logging: false
 });
 ```
+
+**Fixes**
+
+Implemented in the following files
+
+- *models/index.js*
 
 **Recommendation**
 

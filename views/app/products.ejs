@@ -25,16 +25,23 @@
             </p>
         <% } %>
 
-        <% if (messages.message) { %>
-            <div class="alert alert-success"><%=messages.message%></div>
+        <% if (messages.success) { %>
+            <div class="alert alert-success"><%=messages.success%></div>
+        <% } else if (messages.danger) { %>
+            <div class="alert alert-danger"><%= messages.danger %></div>
+        <% } else if (messages.warning) {%> 
+            <div class="alert alert-warning"><%= messages.warning %></div>
+        <% } else if (messages.info) {%> 
+            <div class="alert alert-info"><%= messages.info %></div>
         <% } %>
 
         <table class='table'>
             <tr>
                 <th>#</th>
-                <th width='50%'>Name</th>
+                <th>Name</th>
                 <th>Code</th>
                 <th>Tags</th>
+                <th>Description</th>
                 <th></th>
             </tr>
             <% if (output && output.products) { for(var i=0; i<output.products.length; i++) { %>
@@ -43,6 +50,7 @@
                 <td><%- output.products[i].name %></td>
                 <td><%- output.products[i].code %></td>
                 <td><%- output.products[i].tags %></td>
+                <td><%- output.products[i].description %></td>
                 <td>
                     <a href='/app/modifyproduct?id=<%=output.products[i].id%>'>Edit</a>
                 </td>

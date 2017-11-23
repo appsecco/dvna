@@ -53,6 +53,14 @@ function adminCheck(req,res,next){
 router.get('/admin/api/users',authHandler.isAuthenticated, adminCheck, appHandler.listUsersAPI)
 ```
 
+**Fixes**
+
+Implemented in the following files
+
+- *core/authHandler.js*
+- *routes/app.js*
+- *views/app/admin.ejs*
+
 **Recommendation**
 
 - Try to restrict your functions to maximum extent, White listing is always better than blacklisting

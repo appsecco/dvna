@@ -11,15 +11,14 @@
             <div class='col-md-6'>
                 <h2>User Search</h2>
 
-                <% if (messages.error) { %>
-                    <div class="alert alert-danger"><%= messages.error %></div>
-                <% } %>
-
-                <% if (output && output.user=='none') { %>
-                    <div class="alert alert-warning">User not found!</div>
-                <% } %>
-                <% if (output && output.user!='none') { %>
-                    <div class="alert alert-success">User found!</div>
+                <% if (messages.success) { %>
+                    <div class="alert alert-success"><%=messages.success%></div>
+                <% } else if (messages.danger) { %>
+                    <div class="alert alert-danger"><%= messages.danger %></div>
+                <% } else if (messages.warning) {%> 
+                    <div class="alert alert-warning"><%= messages.warning %></div>
+                <% } else if (messages.info) {%> 
+                    <div class="alert alert-info"><%= messages.info %></div>
                 <% } %>
 
                 <form id="userSearch" name="userSearch" action="/app/usersearch" method="post">
@@ -38,12 +37,16 @@
                 </form>
             </div>
             <div class='col-md-6'>
-                <% if(output && output.user!='none') { %>
+                <% if(output && output.user) { %>
                 <h2>Search Result</h2>
                     <table class='table'>
                         <tr>
                             <th>Name</th>
                             <td><%= output.user.name %></td>
+                        </tr>
+                        <tr>
+                            <th>ID</th>
+                            <td><%= output.user.id %></td>
                         </tr>
                     </table>
                 <% } %>

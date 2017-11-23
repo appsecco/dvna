@@ -6,19 +6,17 @@ services:
     build: ./
     ports:
       - 9090:9090
+    volumes:
+      - .:/app
     depends_on:
-      mysql-db:
-        condition: service_healthy
+      - mysql-db
     env_file:
-      - ./.env
+      - ./vars.env
+    entrypoint: bash wait-for-it.sh mysql-db:3306 -t 300 -- bash startup.sh
 
   mysql-db:
     image: mysql:5.7
     expose:
       - "3306"
     env_file:
-      - ./.env
-    healthcheck:
-        test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-        timeout: 20s
-        retries: 10
+      - ./vars.env

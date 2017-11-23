@@ -6,7 +6,6 @@ There is a SQL Injection in `User Search` feature at the following URL
 
 http://127.0.0.1:9090/app/usersearch
 
-
 By injecting a single quote `'`, we see an error has occurred.
 ![sqli1](/resources/sqli1.png "SQLi Trigger")
 
@@ -15,7 +14,7 @@ An attacker can exploit this further and obtain potentially sensitive informatio
 
 **Vulnerable Code snippet**
 
-*core/apphandler.js*
+*core/appHandler.js*
 ```         
 ...
 var query = "SELECT name FROM Users WHERE login='" + req.body.login + "'";
@@ -26,21 +25,28 @@ db.sequelize.query(query,{ model: db.User }).then(user => {
 **Solution**
 
 You may use model's **find** function and rely on in-built input sanitization of sequelize
+
+*core/appHandler.js*
 ```
 ...
-db.Users.find({where:{login:req.body.login}}).then(user => {
-    if(user){
+if (vh.vCode(req.body.login)){
+    db.User.find({where:{'login':req.body.login}}).then(user => {
+        if (user) {
 ...
 ```
 
 But it is recommended to explicitly validate/sanitize inputs
 
+**Fixes**
+
+Implemented in the following files
+
+- *core/appHandler.js*
+
 **Recommendation**
 
 - Validate Input before processing
 - Sanitize Input before storing
-
-Never trust the user, using a library like [validatorjs](https://www.npmjs.com/package/validator) may help.
 
 ## Command Injection
 
@@ -54,7 +60,7 @@ By injecting `x ; id`, we are able to see that the `id` command has been execute
 
 **Vulnerable Code snippet**
 
-*core/apphandler.js*
+*core/appHandler.js*
 ```
 const exec = require('child_process').exec;
 ...
@@ -66,15 +72,22 @@ exec('ping -c 2 '+ req.body.address, function(err,stdout,stderr){
 **Solution**
 
 You may use `exec_file` or `spawn` method under child_process which will prevent arbitrary command execution.
+
+*core/appHandler.js*
 ```
 const execFile = require('child_process').execFile;
 ...
-execFile('ping', ['-c', '2', req.body.address] , function(err,stdout,stderr){
-    console.log(err)
+if (vh.vIP(req.body.address)){
+    execFile('ping', ['-c', '2', req.body.address] , function(err,stdout,stderr){
     output = stdout + stderr
 ...
 ```
 
+**Fixes**
+
+Implemented in the following files
+
+- *core/appHandler.js*
 
 **Recommendation**
 
