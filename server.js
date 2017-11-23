@@ -4,6 +4,7 @@ var passport = require('passport')
 var session = require('express-session')
 var ejs = require('ejs')
 var morgan = require('morgan')
+var xssFilter = require('x-xss-protection')
 var config = require('./config/server')
 
 //Initialize Express
@@ -13,6 +14,9 @@ app.use(express.static('public'))
 app.set('view engine','ejs')
 app.use(morgan('tiny'))
 app.use(bodyParser.urlencoded({ extended: false }))
+
+// Sets X-XSS-Protection Header
+app.use(xssFilter())
 
 // For Reverse proxy support
 // app.set('trust proxy', 1) 

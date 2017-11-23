@@ -17,7 +17,7 @@
 
         <% if (output&&output.searchTerm) { %>
             <p class="bg-success">
-                Listing products with <strong>search query: </strong> <%- output.searchTerm %>
+                Listing products with <strong>search query: </strong> <%= output.searchTerm %>
                 &nbsp; &nbsp;
                 <small><a href="/app/products">
                     <i class="fa fa-remove"></i> Clear
@@ -46,11 +46,11 @@
             </tr>
             <% if (output && output.products) { for(var i=0; i<output.products.length; i++) { %>
             <tr>
-                <td><%- output.products[i].id %></td>
-                <td><%- output.products[i].name %></td>
-                <td><%- output.products[i].code %></td>
-                <td><%- output.products[i].tags %></td>
-                <td><%- output.products[i].description %></td>
+                <td><%= output.products[i].id %></td>
+                <td><%= output.products[i].name %></td>
+                <td><%= output.products[i].code %></td>
+                <td><%= output.products[i].tags %></td>
+                <td><%= output.products[i].description %></td>
                 <td>
                     <a href='/app/modifyproduct?id=<%=output.products[i].id%>'>Edit</a>
                 </td>
