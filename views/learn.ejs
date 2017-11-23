@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include common/head %>
+</head>
+<body>
+    <% include common/navigation %>
+    <div class='container' style='min-height: 450px'><div class='row'><div class='col-md-12'>
+
+        <div class='row'>
+            <div class='col-md-3'>
+                <% include common/menu %>
+            </div>
+            <div class='col-md-9'>
+                <% if (messages.success) { %>
+                    <div class="alert alert-success"><%=messages.success%></div>
+                <% } else if (messages.danger) { %>
+                    <div class="alert alert-danger"><%= messages.danger %></div>
+                <% } else if (messages.warning) {%> 
+                    <div class="alert alert-warning"><%= messages.warning %></div>
+                <% } else if (messages.info) {%> 
+                    <div class="alert alert-info"><%= messages.info %></div>
+                <% } %>                
+                <h3>Welcome to <strong>Damn Vulnerable Node Application</strong></h3>
+                <p>The <i>Damn Vulnerable Node Application</i> implements a set of intentionally vulnerable functions in NodeJS for learning purpose.
+                Start by selecting one of the vulnerability class from the left menu or select one of the link below: </p>
+
+                <ul>
+                    <li><a href='/learn/vulnerability/a1_injection'>A1: Injection</a></li>
+                    <li><a href='/learn/vulnerability/a2_broken_auth'>A2: Broken Authentication and Session Management</a></li>
+                    <li><a href='/learn/vulnerability/a3_xss'>A3: Cross-site Scripting</a></li>
+                    <li><a href='/learn/vulnerability/a4_idor'>A4: Insecure Direct Object Reference</a></li>
+                    <li><a href='/learn/vulnerability/a5_sec_misconf'>A5: Security Misconfiguration</a></li>
+                    <li><a href='/learn/vulnerability/a6_sensitive_data'>A6: Sensitive Data Exposure</a></li>
+                    <li><a href='/learn/vulnerability/a7_missing_access_control'>A7: Missing Function Level Access Control</a></li>
+                    <li><a href='/learn/vulnerability/a8_csrf'>A8: Cross-site Request Forgery</a></li>
+                    <li><a href='/learn/vulnerability/a9_vuln_component'>A9: Using Components with Known Vulnerability</a></li>
+                    <li><a href='/learn/vulnerability/a10_redirect'>A10: Unvalidated Redirects and Forwards</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div></div></div>
+    <% include common/footer %>
+</body>
+</html>

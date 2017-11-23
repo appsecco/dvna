@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../common/head %>
+</head>
+<body>
+    <% include ../common/navigation %>
+    <div class='container' style='min-height: 450px'><div class='row'><div class='col-md-12'>
+
+    <h2>
+        Add/Edit Product
+        <span class='pull-right'>
+            <a href='/app/products' class='btn btn-primary'>List Products</a>
+        </span>
+    </h2>
+
+    <% if (messages.success) { %>
+        <div class="alert alert-success"><%=messages.success%></div>
+    <% } else if (messages.danger) { %>
+        <div class="alert alert-danger"><%= messages.danger %></div>
+    <% } else if (messages.warning) {%> 
+        <div class="alert alert-warning"><%= messages.warning %></div>
+    <% } else if (messages.info) {%> 
+        <div class="alert alert-info"><%= messages.info %></div>
+    <% } %>
+
+    <form id="addEditProduct" name="addEditProduct" action="/app/modifyproduct" method="post">
+        <fieldset>
+
+            <input type="hidden" name="id" value="<%= output.product.id %>" id="addEditProduct_product_id" />
+
+            <div class="form-group ">
+                <label class="  control-label" for="addEditProduct_product_name">Product Name </label>
+                <div class="  controls">
+
+                    <input type="text" name="name" value="<%= output.product.name %>" id="addEditProduct_product_name" class="form-control" placeholder="Enter product name" />
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <label class="  control-label" for="addEditProduct_product_code">Product Code </label>
+                <div class="  controls">
+
+                    <input type="text" name="code" value="<%= output.product.code %>" id="addEditProduct_product_code" class="form-control" placeholder="Enter product code" />
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <label class="  control-label" for="addEditProduct_product_tags">Product Tags </label>
+                <div class="  controls">
+
+                    <input type="text" name="tags" value="<%= output.product.tags %>" id="addEditProduct_product_tags" class="form-control" placeholder="Enter product tags eg. Tag1,Tag2,Tag3" />
+                </div>
+            </div>
+          
+            <div class="form-group ">
+                <label class="  control-label" for="addEditProduct_product_description">Product Description </label>
+                <div class="  controls">
+                    <textarea name="description" cols="" rows="" id="addEditProduct_product_description" class="form-control"><%= output.product.description %></textarea>
+                </div>
+            </div>
+
+            <input type="submit" value="Submit" id="addEditProduct_0" class="btn btn-primary" />
+
+        </fieldset>
+    </form>
+
+    <script type="text/javascript">
+        if (typeof jQuery != 'undefined') {
+            if (typeof jQuery.fn.tooltip == 'function') {
+                jQuery('i.s2b_tooltip').tooltip();
+            }
+        }
+    </script>
+
+    </div></div></div>
+    <% include ../common/footer %>
+</body>
+</html>

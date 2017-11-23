@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../common/head %>
+</head>
+<body>
+    <% include ../common/navigation %>
+<div class='container' style='min-height: 450px'><div class='row'><div class='col-md-12'>
+
+    <div class='row'>
+        <div class='col-md-3'>
+            <% include ../common/menu %>
+        </div>
+        <div class='col-md-9'>
+            <h3><%=vuln_title%></h3>
+
+            <h4>Scenario</h4>
+            <%- include(vuln_scenario) %>
+
+            <h4>Overview</h4>
+            <%- include(vuln_description) %>
+
+            <h4>Reference</h4>
+            <%- include(vuln_reference) %>
+        </div>
+    </div>
+
+</div></div></div>
+<% include ../common/footer %>
+</body>
+</html>

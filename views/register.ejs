@@ -1,0 +1,98 @@
+<html lang="en">
+<head>
+    <% include common/head %>
+</head>
+<body>
+    <% include common/navigation %>
+    <div class='container' style='min-height: 450px'><div class='row'><div class='col-md-12'>
+
+        <div class='row'>
+            <div class='col-md-6 col-md-offset-3'>
+                <div class='page-header'>
+                    <h2>Register</h2>
+                </div>
+
+                <% if (messages.success) { %>
+                    <div class="alert alert-success"><%=messages.success%></div>
+                <% } else if (messages.danger) { %>
+                    <div class="alert alert-danger"><%= messages.danger %></div>
+                <% } else if (messages.warning) {%> 
+                    <div class="alert alert-warning"><%= messages.warning %></div>
+                <% } else if (messages.info) {%> 
+                    <div class="alert alert-info"><%= messages.info %></div>
+                <% } %>
+
+                <div class='page-body'>
+                    <form id="register" name="register" action="/register" method="post">
+                        <fieldset>
+
+                            <div class="form-group ">
+                                <label class="  control-label" for="register_name">Name </label>
+                                <div class="  controls">
+
+                                    <input type="text" name="name" value="" id="register_name" class="form-control" placeholder="Enter full name" />
+                                </div>
+                            </div>
+
+
+                            <div class="form-group ">
+                                <label class="  control-label" for="register_login">Login </label>
+                                <div class="  controls">
+
+                                    <input type="text" name="username" value="" id="register_login" class="form-control" placeholder="Enter username" />
+                                </div>
+                            </div>
+
+
+                            <div class="form-group ">
+                                <label class="  control-label" for="register_email">Email </label>
+                                <div class="  controls">
+
+                                    <input type="text" name="email" value="" id="register_email" class="form-control" placeholder="Enter email address" />
+                                </div>
+                            </div>
+
+
+                            <div class="form-group ">
+                                <label class="  control-label" for="register_password">Password </label>
+                                <div class="  controls">
+
+                                    <input type="password" name="password" id="register_password" class="form-control" placeholder="Enter password" />
+                                </div>
+                            </div>
+
+                            <div class="form-group ">
+                                <label class="  control-label" for="register_passwordConfirmation">Password Confirmation </label>
+                                <div class="  controls">
+
+                                    <input type="password" name="cpassword" id="register_passwordConfirmation" class="form-control" placeholder="Confirm password" />
+                                </div>
+                            </div>
+
+
+                            <input type="submit" value="Submit" id="register_0" class="btn btn-primary" />
+
+                        </fieldset>
+                    </form>
+
+
+                    <script type="text/javascript">
+                        if (typeof jQuery != 'undefined') {
+                            if (typeof jQuery.fn.tooltip == 'function') {
+                                jQuery('i.s2b_tooltip').tooltip();
+                            }
+                        }
+                    </script>
+
+
+                    <br/>
+                    <a href='/login'>Already registered? Login here</a>                
+                </div>
+            </div>
+         </div>
+
+
+    </div></div></div>
+    <% include common/footer %>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include common/head %>
+</head>
+<body>
+<% include common/navigation %>
+<div class='container' style='min-height: 450px'><div class='row'><div class='col-md-12'>
+
+    <div class='row'>
+        <div class='col-md-6 col-md-offset-3'>
+            <div class='page-header'>
+                <h2>Reset Password</h2>
+            </div>
+
+            <% if (messages.success) { %>
+                <div class="alert alert-success"><%=messages.success%></div>
+            <% } else if (messages.danger) { %>
+                <div class="alert alert-danger"><%= messages.danger %></div>
+            <% } else if (messages.warning) {%> 
+                <div class="alert alert-warning"><%= messages.warning %></div>
+            <% } else if (messages.info) {%> 
+                <div class="alert alert-info"><%= messages.info %></div>
+            <% } %>
+
+            <div class='page-body'>
+                <form id="resetPasswordExecute" name="resetPasswordExecute" action="/resetpw" method="post">
+                    <fieldset>
+
+                        <div class="form-group ">
+                            <label class="  control-label" for="resetPasswordExecute_password">Password </label>
+                            <div class="  controls">
+
+                                <input type="password" name="password" id="resetPasswordExecute_password" class="form-control" placeholder="Enter password" />
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <label class="  control-label" for="resetPasswordExecute_passwordConfirmation">Password Confirmation </label>
+                            <div class="  controls">
+
+                                <input type="password" name="cpassword" id="resetPasswordExecute_passwordConfirmation" class="form-control" placeholder="Enter password confirmation" />
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="login" value="<%=login%>" id="resetPasswordExecute_login" />
+                        <input type="hidden" name="token" value="<%=token%>" id="resetPasswordExecute_key" />
+
+                        <input type="submit" value="Submit" id="resetPasswordExecute_0" class="btn btn-primary" />
+
+                    </fieldset>
+                </form>
+
+                <br/>
+                <a href='/login'>Already registered? Login here</a>
+            </div>
+        </div>
+    </div>
+
+
+</div></div></div>
+<% include common/footer %>
+</body>
+</html>

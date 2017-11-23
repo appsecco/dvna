@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../common/head %>
+</head>
+<body>
+<% include ../common/navigation %>
+<div class='container' style='min-height: 450px'><div class='row'><div class='col-md-12'>
+
+    <div class='row'>
+        <div class='col-md-6 col-md-offset-3'>
+            <h2> User Profile </h2>
+
+            <% if (messages.success) { %>
+                <div class="alert alert-success"><%=messages.success%></div>
+            <% } else if (messages.danger) { %>
+                <div class="alert alert-danger"><%= messages.danger %></div>
+            <% } else if (messages.warning) {%>
+                <div class="alert alert-warning"><%= messages.warning %></div>
+            <% } else if (messages.info) {%>
+                <div class="alert alert-info"><%= messages.info %></div>
+            <% } %>
+
+            <form id="editUser" name="editUser" action="/app/useredit" method="post">
+                <fieldset>
+                    <h3> Update User Information </h3><br>
+                    
+                    <input type="hidden" name="id" value="<%= userId %>" id="editUser_userId" />
+                    
+                    <div class="form-group ">
+                        <label class="  control-label" for="editUser_name">Name </label>
+                        <div class="  controls">
+
+                            <input type="text" name="name" value="<%= userName %>" id="editUser_name" class="form-control" placeholder="Enter your name" />
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label class="  control-label" for="editUser_email">Email </label>
+                        <div class="  controls">
+
+                            <input type="text" name="email" value="<%= userEmail %>" id="editUser_email" class="form-control" placeholder="Enter your email" />
+                        </div>
+                    </div><br>
+                    <h3> Change Password </h3><br>
+                    <div class="form-group ">
+                        <label class="  control-label" for="editUser_password">New Password </label>
+                        <div class="  controls">
+
+                            <input type="password" name="password" id="editUser_password" class="form-control" placeholder="Enter new password" />
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label class="  control-label" for="editUser_passwordConfirmation">Password Confirmation </label>
+                        <div class="  controls">
+
+                            <input type="password" name="cpassword" id="editUser_passwordConfirmation" class="form-control" placeholder="Enter password confirmation" />
+                        </div>
+                    </div>
+
+                    <input type="submit" value="Submit" id="editUser_0" class="btn btn-primary" />
+
+                </fieldset>
+            </form>
+
+            <script type="text/javascript">
+                if (typeof jQuery != 'undefined') {
+                    if (typeof jQuery.fn.tooltip == 'function') {
+                        jQuery('i.s2b_tooltip').tooltip();
+                    }
+                }
+            </script>
+        </div>
+    </div>
+
+</div></div></div>
+<% include ../common/footer %>
+</body>
+</html>

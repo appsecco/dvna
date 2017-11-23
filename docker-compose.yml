@@ -1,0 +1,22 @@
+# Damn Vulnerable NodeJS Application
+
+version: "2.1"
+services:
+  app:
+    build: ./
+    ports:
+      - 9090:9090
+    volumes:
+      - .:/app
+    depends_on:
+      - mysql-db
+    env_file:
+      - ./vars.env
+    entrypoint: bash wait-for-it.sh mysql-db:3306 -t 300 -- bash startup.sh
+
+  mysql-db:
+    image: mysql:5.7
+    expose:
+      - "3306"
+    env_file:
+      - ./vars.env

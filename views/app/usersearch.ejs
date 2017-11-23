@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../common/head %>
+</head>
+<body>
+    <% include ../common/navigation %>
+    <div class='container' style='min-height: 450px'><div class='row'><div class='col-md-12'>
+
+        <div class='row'>
+            <div class='col-md-6'>
+                <h2>User Search</h2>
+
+                <% if (messages.success) { %>
+                    <div class="alert alert-success"><%=messages.success%></div>
+                <% } else if (messages.danger) { %>
+                    <div class="alert alert-danger"><%= messages.danger %></div>
+                <% } else if (messages.warning) {%> 
+                    <div class="alert alert-warning"><%= messages.warning %></div>
+                <% } else if (messages.info) {%> 
+                    <div class="alert alert-info"><%= messages.info %></div>
+                <% } %>
+
+                <form id="userSearch" name="userSearch" action="/app/usersearch" method="post">
+                    <fieldset>
+                        <div class="form-group ">
+                            <label class="  control-label" for="userSearch_login">Login </label>
+                            <div class="  controls">
+
+                                <input type="text" name="login" value="" id="userSearch_login" class="form-control" placeholder="Enter login to search" />
+                            </div>
+                        </div>
+
+                        <input type="submit" value="Submit" id="userSearch_0" class="btn btn-primary" />
+
+                    </fieldset>
+                </form>
+            </div>
+            <div class='col-md-6'>
+                <% if(output && output.user) { %>
+                <h2>Search Result</h2>
+                    <table class='table'>
+                        <tr>
+                            <th>Name</th>
+                            <td><%= output.user.name %></td>
+                        </tr>
+                        <tr>
+                            <th>ID</th>
+                            <td><%= output.user.id %></td>
+                        </tr>
+                    </table>
+                <% } %>
+            </div>
+        </div>
+    </div></div></div>
+    <% include ../common/footer %>
+</body>
+</html>

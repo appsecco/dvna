@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../common/head %>
+</head>
+<body>
+    <% include ../common/navigation %>
+    <div class='container' style='min-height: 450px'><div class='row'><div class='col-md-12'>
+
+        <h2>
+            <i class='fa fa-list'></i> Available Products
+            <span class='pull-right'>
+                <a href='#' class='btn btn-primary' data-toggle="modal" data-target="#searchModal">Search Product</a>
+                <a href='/app/modifyproduct' class='btn btn-primary'>Add Product</a>
+            </span>
+        </h2>
+
+        <% if (output&&output.searchTerm) { %>
+            <p class="bg-success">
+                Listing products with <strong>search query: </strong> <%- output.searchTerm %>
+                &nbsp; &nbsp;
+                <small><a href="/app/products">
+                    <i class="fa fa-remove"></i> Clear
+                </a></small>
+            </p>
+        <% } %>
+
+        <% if (messages.success) { %>
+            <div class="alert alert-success"><%=messages.success%></div>
+        <% } else if (messages.danger) { %>
+            <div class="alert alert-danger"><%= messages.danger %></div>
+        <% } else if (messages.warning) {%> 
+            <div class="alert alert-warning"><%= messages.warning %></div>
+        <% } else if (messages.info) {%> 
+            <div class="alert alert-info"><%= messages.info %></div>
+        <% } %>
+
+        <table class='table'>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Code</th>
+                <th>Tags</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+            <% if (output && output.products) { for(var i=0; i<output.products.length; i++) { %>
+            <tr>
+                <td><%- output.products[i].id %></td>
+                <td><%- output.products[i].name %></td>
+                <td><%- output.products[i].code %></td>
+                <td><%- output.products[i].tags %></td>
+                <td><%- output.products[i].description %></td>
+                <td>
+                    <a href='/app/modifyproduct?id=<%=output.products[i].id%>'>Edit</a>
+                </td>
+            </tr>
+            <% } }%>
+        </table>
+
+        <div class="modal fade" tabindex="-1" role="dialog" id="searchModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Search Product</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="listProduct" name="listProduct" action="/app/products" method="post">
+                            <fieldset>
+
+                                <div class="form-group ">
+                                    <label class="  control-label" for="listProduct_searchQuery">Query </label>
+                                    <div class="  controls">
+
+                                        <input type="text" name="name" value="" id="listProduct_searchQuery" class="form-control" placeholder="Search by name" />
+                                    </div>
+                                </div>
+
+                                <input type="submit" value="Submit" id="listProduct_0" class="btn btn-primary" />
+
+                            </fieldset>
+                        </form>
+
+                        <script type="text/javascript">
+                            if (typeof jQuery != 'undefined') {
+                                if (typeof jQuery.fn.tooltip == 'function') {
+                                    jQuery('i.s2b_tooltip').tooltip();
+                                }
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div></div></div>
+    <% include ../common/footer %>
+</body>
+</html>
