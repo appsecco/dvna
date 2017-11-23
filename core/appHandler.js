@@ -1,7 +1,7 @@
 var db = require('../models')
 var vh = require('./validationHandler')
 var bCrypt = require('bcrypt')
-const execFile = require('child_process').execFile;
+const execFile = require('child_process').execFile
 var mathjs = require('mathjs')
 const Op = db.Sequelize.Op
 
