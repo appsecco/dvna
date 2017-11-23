@@ -6,7 +6,7 @@
 
 The application is powered by commonly used libraries such as [express](https://www.npmjs.com/package/express), [passport](https://www.npmjs.com/package/passport), [sequelize](https://www.npmjs.com/package/sequelize), etc.
 
-It is aimed to be useful for developers with limited development expereience in NodeJS, and the fixes for the vulnerabilities will be available in the `fixes` branch in the repository.
+It is aimed to be useful for developers with limited development expereience in NodeJS, and the fixes for the vulnerabilities will be available in the [fixes](https://github.com/appsecco/dvna/tree/fixes) branch in the repository.
 
 This guide contains the following:
 
