@@ -7,15 +7,12 @@ const Op = db.Sequelize.Op
 
 module.exports.userSearch = function (req, res) {
 	if (vh.vCode(req.body.login)){
-		var query = "SELECT name,id FROM Users WHERE login='" + req.body.login + "'";
-		db.sequelize.query(query, {
-			model: db.User
-		}).then(user => {
-			if (user.length) {
+		db.User.find({where:{'login':req.body.login}}).then(user => {
+			if (user) {
 				var output = {
 					user: {
-						name: user[0].name,
-						id: user[0].id
+						name: user.name,
+						id: user.id
 					}
 				}
 				res.render('app/usersearch', {
@@ -34,7 +31,7 @@ module.exports.userSearch = function (req, res) {
 			})
 		})
 	}else{
-		req.flash('danger', 'Invalid login')
+		req.flash('danger', 'Input Validation Failed')
 		res.render('app/usersearch', {
 			output: null
 		})		
