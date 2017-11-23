@@ -1,45 +1,59 @@
 var db = require('../models')
+var vh = require('./validationHandler')
 var bCrypt = require('bcrypt')
 const exec = require('child_process').exec;
 var mathjs = require('mathjs')
 const Op = db.Sequelize.Op
 
 module.exports.userSearch = function (req, res) {
-	var query = "SELECT name,id FROM Users WHERE login='" + req.body.login + "'";
-	db.sequelize.query(query, {
-		model: db.User
-	}).then(user => {
-		if (user.length) {
-			var output = {
-				user: {
-					name: user[0].name,
-					id: user[0].id
+	if (vh.vCode(req.body.login)){
+		var query = "SELECT name,id FROM Users WHERE login='" + req.body.login + "'";
+		db.sequelize.query(query, {
+			model: db.User
+		}).then(user => {
+			if (user.length) {
+				var output = {
+					user: {
+						name: user[0].name,
+						id: user[0].id
+					}
 				}
+				res.render('app/usersearch', {
+					output: output
+				})
+			} else {
+				req.flash('warning', 'User not found')
+				res.render('app/usersearch', {
+					output: null
+				})
 			}
-			res.render('app/usersearch', {
-				output: output
-			})
-		} else {
-			req.flash('warning', 'User not found')
+		}).catch(err => {
+			req.flash('danger', 'Internal Error')
 			res.render('app/usersearch', {
 				output: null
 			})
-		}
-	}).catch(err => {
-		req.flash('danger', 'Internal Error')
+		})
+	}else{
+		req.flash('danger', 'Invalid login')
 		res.render('app/usersearch', {
 			output: null
-		})
-	})
+		})		
+	}
 }
 
 module.exports.ping = function (req, res) {
-	exec('ping -c 2 ' + req.body.address, function (err, stdout, stderr) {
-		output = stdout + stderr
+	if (vh.vIP(req.body.address)){
+		exec('ping -c 2 ' + req.body.address, function (err, stdout, stderr) {
+			output = stdout + stderr
+			res.render('app/ping', {
+				output: output
+			})
+		})			
+	}else{
 		res.render('app/ping', {
-			output: output
-		})
-	})
+			output: 'Input Validation Failed'
+		})	
+	}
 }
 
 module.exports.listProducts = function (req, res) {
@@ -54,21 +68,28 @@ module.exports.listProducts = function (req, res) {
 }
 
 module.exports.productSearch = function (req, res) {
-	db.Product.findAll({
-		where: {
-			name: {
-				[Op.like]: '%' + req.body.name + '%'
+	if(vh.vName(req.body.name)){
+		db.Product.findAll({
+			where: {
+				name: {
+					[Op.like]: '%' + req.body.name + '%'
+				}
 			}
-		}
-	}).then(products => {
-		output = {
-			products: products,
-			searchTerm: req.body.name
-		}
+		}).then(products => {
+			output = {
+				products: products,
+				searchTerm: req.body.name
+			}
+			res.render('app/products', {
+				output: output
+			})
+		})				
+	}else{
+		req.flash('danger', 'Invalid Product name')
 		res.render('app/products', {
-			output: output
-		})
-	})
+			output: null
+		})					
+	}
 }
 
 module.exports.modifyProduct = function (req, res) {
@@ -80,26 +101,33 @@ module.exports.modifyProduct = function (req, res) {
 			output: output
 		})
 	} else {
-		db.Product.find({
-			where: {
-				'id': req.query.id
-			}
-		}).then(product => {
-			if (!product) {
-				product = {}
-			}
-			output = {
-				product: product
-			}
-			res.render('app/modifyproduct', {
-				output: output
+		if(vh.vPID(req.query.id)){
+			db.Product.find({
+				where: {
+					'id': req.query.id
+				}
+			}).then(product => {
+				if (!product) {
+					product = {}
+				}
+				output = {
+					product: product
+				}
+				res.render('app/modifyproduct', {
+					output: output
+				})
 			})
-		})
+		}else{
+			req.flash('danger', 'Input Product ID')
+			res.render('app/products', {
+				output: null
+			})
+		}
 	}
 }
 
 module.exports.modifyProductSubmit = function (req, res) {
-	if (!req.body.id || req.body.id == '') {
+	if (!vh.vPID(req.body.id)) {
 		req.body.id = 0
 	}
 	db.Product.find({
@@ -107,27 +135,34 @@ module.exports.modifyProductSubmit = function (req, res) {
 			'id': req.body.id
 		}
 	}).then(product => {
-		if (!product) {
-			product = new db.Product()
-		}
-		product.code = req.body.code
-		product.name = req.body.name
-		product.description = req.body.description
-		product.tags = req.body.tags
-		product.save().then(p => {
-			if (p) {
-				req.flash('success', 'Product added/modified!')
-				res.redirect('/app/products')
-			}
-		}).catch(err => {
-			output = {
-				product: product
-			}
-			req.flash('danger',err)
-			res.render('app/modifyproduct', {
-				output: output
+		if(vh.vName(req.body.name)&&vh.vCode(req.body.code)&&vh.vString(req.body.description)&&vh.vTags(req.body.tags)){
+			if (!product) {
+				product = new db.Product()
+			}			
+			product.code = req.body.code
+			product.name = req.body.name
+			product.description = req.body.description
+			product.tags = req.body.tags
+			product.save().then(p => {
+				if (p) {
+					req.flash('success', 'Product added/modified!')
+					res.redirect('/app/products')
+				}
+			}).catch(err => {
+				output = {
+					product: product
+				}
+				req.flash('danger',err)
+				res.render('app/modifyproduct', {
+					output: output
+				})
 			})
-		})
+		}else{
+			req.flash('danger', 'Input Validation Failed')
+			res.render('app/modifyproduct', {
+				output: null
+			})			
+		}
 	})
 }
 
@@ -140,61 +175,76 @@ module.exports.userEdit = function (req, res) {
 }
 
 module.exports.userEditSubmit = function (req, res) {
-	db.User.find({
-		where: {
-			'id': req.body.id
-		}		
-	}).then(user =>{
-		if(req.body.password.length>0){
+	if(vh.vEmail(req.body.email)&&vh.vName(req.body.name)){
+		db.User.find({
+			where: {
+				'id': req.body.id
+			}		
+		}).then(user =>{
 			if(req.body.password.length>0){
-				if (req.body.password == req.body.cpassword) {
-					user.password = bCrypt.hashSync(req.body.password, bCrypt.genSaltSync(10), null)
+				if(vh.vPassword(req.body.password)){
+					if (req.body.password == req.body.cpassword) {
+						user.password = bCrypt.hashSync(req.body.password, bCrypt.genSaltSync(10), null)
+					}else{
+						req.flash('warning', 'Passwords dont match')
+						res.render('app/useredit', {
+							userId: req.user.id,
+							userEmail: req.user.email,
+							userName: req.user.name,
+						})
+						return		
+					}
 				}else{
-					req.flash('warning', 'Passwords dont match')
+					req.flash('warning', 'Invalid Password. Minimum length of a password is 8')
 					res.render('app/useredit', {
-						userId: req.user.id,
-						userEmail: req.user.email,
-						userName: req.user.name,
+						userId: req.body.id,
+						userEmail: req.body.email,
+						userName: req.body.name,
 					})
-					return		
+					return
 				}
-			}else{
-				req.flash('warning', 'Invalid Password')
+			}
+			user.email = req.body.email
+			user.name = req.body.name
+			user.save().then(function () {
+				req.flash('success',"Updated successfully")
 				res.render('app/useredit', {
 					userId: req.user.id,
 					userEmail: req.user.email,
 					userName: req.user.name,
 				})
-				return
-			}
-		}
-		user.email = req.body.email
-		user.name = req.body.name
-		user.save().then(function () {
-			req.flash('success',"Updated successfully")
-			res.render('app/useredit', {
-				userId: req.user.id,
-				userEmail: req.user.email,
-				userName: req.user.name,
 			})
 		})
-	})
+	}else{
+		req.flash('danger', 'Invalid Profile information')
+		res.render('app/useredit', {
+			userId: req.body.id,
+			userEmail: req.body.email,
+			userName: req.body.name,
+		})
+	}
 }
 
 module.exports.redirect = function (req, res) {
-	if (req.query.url) {
-		res.redirect(req.query.url)
+	if (vh.vUrl(req.query.url)) {
+		res.render('app/redirect',{url:req.query.url, csrfToken:req.csrfToken()})
 	} else {
 		res.send('invalid redirect url')
 	}
 }
 
 module.exports.calc = function (req, res) {
-	if (req.body.eqn) {
-		res.render('app/calc', {
-			output: mathjs.eval(req.body.eqn)
-		})
-	} else {
+	if(vh.vEqn(req.body.eqn)){
+		if (req.body.eqn) {
+			res.render('app/calc', {
+				output: mathjs.eval(req.body.eqn)
+			})
+		} else {
+			res.render('app/calc', {
+				output: 'Enter a valid math string like (3+3)*2'
+			})
+		}		
+	}else{
 		res.render('app/calc', {
 			output: 'Enter a valid math string like (3+3)*2'
 		})

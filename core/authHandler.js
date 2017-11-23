@@ -1,6 +1,7 @@
 var db = require('../models')
 var bCrypt = require('bcrypt')
 var md5 = require('md5')
+var vh = require('./validationHandler')
 
 module.exports.isAuthenticated = function (req, res, next) {
 	if (req.isAuthenticated()) {
@@ -17,7 +18,7 @@ module.exports.isNotAuthenticated = function (req, res, next) {
 }
 
 module.exports.forgotPw = function (req, res) {
-	if (req.body.login) {
+	if (vh.vCode(req.body.login)) {
 		db.User.find({
 			where: {
 				'login': req.body.login
@@ -39,7 +40,7 @@ module.exports.forgotPw = function (req, res) {
 }
 
 module.exports.resetPw = function (req, res) {
-	if (req.query.login) {
+	if (vh.vCode(req.query.login)&&vh.vCode(req.query.token)) {
 		db.User.find({
 			where: {
 				'login': req.query.login
@@ -61,13 +62,13 @@ module.exports.resetPw = function (req, res) {
 			}
 		})
 	} else {
-		req.flash('danger', "Non Existant login username")
+		req.flash('danger', "Invalid reset link")
 		res.redirect('/forgotpw')
 	}
 }
 
 module.exports.resetPwSubmit = function (req, res) {
-	if (req.body.password && req.body.cpassword && req.body.login && req.body.token) {
+	if (vh.vPassword(req.body.password) && req.body.cpassword && vh.vCode(req.body.login) && vh.vCode(req.body.token)) {
 		if (req.body.password == req.body.cpassword) {
 			db.User.find({
 				where: {
@@ -91,7 +92,7 @@ module.exports.resetPwSubmit = function (req, res) {
 				}
 			})
 		} else {
-			req.flash('danger', "Passowords do not match")
+			req.flash('danger', "Passwords do not match")
 			res.render('resetpw', {
 				login: req.query.login,
 				token: req.query.token
