@@ -29,6 +29,8 @@
 
             <input type="hidden" name="id" value="<%= output.product.id %>" id="addEditProduct_product_id" />
 
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
             <div class="form-group ">
                 <label class="  control-label" for="addEditProduct_product_name">Product Name </label>
                 <div class="  controls">

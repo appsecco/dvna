@@ -95,7 +95,8 @@ module.exports.modifyProduct = function (req, res) {
 			product: {}
 		}
 		res.render('app/modifyproduct', {
-			output: output
+			output: output,
+			csrfToken: req.csrfToken()
 		})
 	} else {
 		if(vh.vPID(req.query.id)){
@@ -111,7 +112,8 @@ module.exports.modifyProduct = function (req, res) {
 					product: product
 				}
 				res.render('app/modifyproduct', {
-					output: output
+					output: output,
+					csrfToken: req.csrfToken()
 				})
 			})
 		}else{
@@ -151,7 +153,8 @@ module.exports.modifyProductSubmit = function (req, res) {
 				}
 				req.flash('danger',err)
 				res.render('app/modifyproduct', {
-					output: output
+					output: output,
+					csrfToken: req.csrfToken()
 				})
 			})
 		}else{
@@ -166,7 +169,8 @@ module.exports.modifyProductSubmit = function (req, res) {
 				}
 			}
 			res.render('app/modifyproduct', {
-				output: output
+				output: output,
+				csrfToken: req.csrfToken()
 			})		
 		}
 	})
@@ -176,7 +180,8 @@ module.exports.userEdit = function (req, res) {
 	res.render('app/useredit', {
 		userId: req.user.id,
 		userEmail: req.user.email,
-		userName: req.user.name
+		userName: req.user.name,
+		csrfToken: req.csrfToken()
 	})
 }
 
@@ -192,6 +197,7 @@ module.exports.userEditSubmit = function (req, res) {
 						userId: req.user.id,
 						userEmail: req.user.email,
 						userName: req.user.name,
+						csrfToken: req.csrfToken()
 					})
 					return		
 				}
@@ -201,6 +207,7 @@ module.exports.userEditSubmit = function (req, res) {
 					userId: req.body.id,
 					userEmail: req.body.email,
 					userName: req.body.name,
+					csrfToken: req.csrfToken()
 				})
 				return
 			}
@@ -213,6 +220,7 @@ module.exports.userEditSubmit = function (req, res) {
 				userId: req.user.id,
 				userEmail: req.user.email,
 				userName: req.user.name,
+				csrfToken: req.csrfToken()
 			})
 		})
 	}else{
@@ -221,6 +229,7 @@ module.exports.userEditSubmit = function (req, res) {
 			userId: req.body.id,
 			userEmail: req.body.email,
 			userName: req.body.name,
+			csrfToken: req.csrfToken()
 		})
 	}
 }

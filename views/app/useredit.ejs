@@ -26,7 +26,9 @@
                     <h3> Update User Information </h3><br>
                     
                     <input type="hidden" name="id" value="<%= userId %>" id="editUser_userId" />
-                    
+
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
                     <div class="form-group ">
                         <label class="  control-label" for="editUser_name">Name </label>
                         <div class="  controls">
