@@ -1,6 +1,7 @@
 var router = require('express').Router()
 var vulnDict = require('../config/vulns')
 var authHandler = require('../core/authHandler')
+var vh = require('../core/validationHandler')
 
 module.exports = function (passport) {
 	router.get('/', authHandler.isAuthenticated, function (req, res) {
@@ -12,19 +13,23 @@ module.exports = function (passport) {
 	})
 
 	router.get('/learn/vulnerability/:vuln', authHandler.isAuthenticated, function (req, res) {
-		res.render('vulnerabilities/layout', {
-			vuln: req.params.vuln,
-			vuln_title: vulnDict[req.params.vuln],
-			vuln_scenario: req.params.vuln + '/scenario',
-			vuln_description: req.params.vuln + '/description',
-			vuln_reference: req.params.vuln + '/reference'
-		}, function (err, html) {
-			if (err) {
-				res.status(404).send('404')
-			} else {
-				res.send(html)
-			}
-		})
+		if(vh.vVuln(req.params.vuln)){
+			res.render('vulnerabilities/layout', {
+				vuln: req.params.vuln,
+				vuln_title: vulnDict[req.params.vuln],
+				vuln_scenario: req.params.vuln + '/scenario',
+				vuln_description: req.params.vuln + '/description',
+				vuln_reference: req.params.vuln + '/reference'
+			}, function (err, html) {
+				if (err) {
+					res.status(404).send('404')
+				} else {
+					res.send(html)
+				}
+			})			
+		}else{
+			res.end('nice try ;)')
+		}
 	})
 
 	router.get('/learn', authHandler.isAuthenticated, function (req, res) {

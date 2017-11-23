@@ -43,5 +43,9 @@ module.exports = {
 	vUrl: function (val){
 		if(val)
 			return validator.isURL(val + '')
+	},
+	vVuln: function (val){
+		if(val)
+			return validator.isWhitelisted(val + '', 'qwertyuiopasdfghjklzxcvbnm1234567890_-')
 	}
 }
