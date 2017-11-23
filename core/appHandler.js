@@ -182,43 +182,37 @@ module.exports.userEdit = function (req, res) {
 
 module.exports.userEditSubmit = function (req, res) {
 	if(vh.vEmail(req.body.email)&&vh.vName(req.body.name)){
-		db.User.find({
-			where: {
-				'id': req.body.id
-			}		
-		}).then(user =>{
-			if(req.body.password.length>0){
-				if(vh.vPassword(req.body.password)){
-					if (req.body.password == req.body.cpassword) {
-						user.password = bCrypt.hashSync(req.body.password, bCrypt.genSaltSync(10), null)
-					}else{
-						req.flash('warning', 'Passwords dont match')
-						res.render('app/useredit', {
-							userId: req.user.id,
-							userEmail: req.user.email,
-							userName: req.user.name,
-						})
-						return		
-					}
+		if(req.body.password.length>0){
+			if(vh.vPassword(req.body.password)){
+				if (req.body.password == req.body.cpassword) {
+					req.user.password = bCrypt.hashSync(req.body.password, bCrypt.genSaltSync(10), null)
 				}else{
-					req.flash('warning', 'Invalid Password. Minimum length of a password is 8')
+					req.flash('warning', 'Passwords dont match')
 					res.render('app/useredit', {
-						userId: req.body.id,
-						userEmail: req.body.email,
-						userName: req.body.name,
+						userId: req.user.id,
+						userEmail: req.user.email,
+						userName: req.user.name,
 					})
-					return
+					return		
 				}
-			}
-			user.email = req.body.email
-			user.name = req.body.name
-			user.save().then(function () {
-				req.flash('success',"Updated successfully")
+			}else{
+				req.flash('warning', 'Invalid Password. Minimum length of a password is 8')
 				res.render('app/useredit', {
-					userId: req.user.id,
-					userEmail: req.user.email,
-					userName: req.user.name,
+					userId: req.body.id,
+					userEmail: req.body.email,
+					userName: req.body.name,
 				})
+				return
+			}
+		}
+		req.user.email = req.body.email
+		req.user.name = req.body.name
+		req.user.save().then(function () {
+			req.flash('success',"Updated successfully")
+			res.render('app/useredit', {
+				userId: req.user.id,
+				userEmail: req.user.email,
+				userName: req.user.name,
 			})
 		})
 	}else{
