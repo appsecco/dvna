@@ -1,12 +1,12 @@
 # Damn Vulnerable NodeJS Application (DVNA) 
 
-![dvna-logo](docs/resourcesdvna.png)
+![dvna-logo](docs/resources/dvna.png)
 
 Damn Vulnerable NodeJS Application (DVNA) is a simple NodeJS application to demonstrate [**OWASP Top 10 Vulnerabilities**](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project#OWASP_Top_10_for_2013) and guide on fixing and avoiding these vulnerabilities. The [fixes](https://github.com/appsecco/dvna/tree/fixes) branch will contain fixes for the vulnerabilities.
 
 The application is powered by commonly used libraries such as [express](https://www.npmjs.com/package/express), [passport](https://www.npmjs.com/package/passport), [sequelize](https://www.npmjs.com/package/sequelize), etc.
 
-The application comes with a developer friendly comprehensive guide which can be used to learn, avoid and fix the vulnerabilities. The guide will be available at https://appsecco.github.io/dvna and will contain the following
+The application comes with a developer friendly comprehensive guide which can be used to learn, avoid and fix the vulnerabilities. The guide will be made available and will contain the following
 
 1. Instructions for setting up DVNA
 2. Instructions on exploiting the vulnerabilities
