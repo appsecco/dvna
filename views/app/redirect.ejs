@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../common/head %>
+</head>
+<body>
+    <% include ../common/navigation %>
+    <div class='container' style='min-height: 450px'><div class='row'><div class='col-md-12'>
+        <div class='row'>
+            <div class='col-md-6 col-md-offset-3'>
+                <div class='page-header'>
+                    <h2>Authorize Redirect</h2>
+                </div>
+                <div class='page-body'>
+                <form id="redirect" name="redirect" action="/app/redirect" method="post">
+                    <fieldset>
+                        Redirect to URL: <%= url %>
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <input type="hidden" name="url" value="<%= url %>"><br><br>
+                        <input type="submit" value="APPROVE" id="approve_0" class="btn btn-primary" />
+
+                    </fieldset>
+                </form>
+
+                <script type="text/javascript">
+                    if (typeof jQuery != 'undefined') {
+                        if (typeof jQuery.fn.tooltip == 'function') {
+                            jQuery('i.s2b_tooltip').tooltip();
+                        }
+                    }
+                </script>
+                </div>
+            </div>
+         </div>
+
+
+    </div></div></div>
+    <% include ../common/footer %>
+</body>
+</html>

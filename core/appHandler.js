@@ -242,6 +242,14 @@ module.exports.redirect = function (req, res) {
 	}
 }
 
+module.exports.redirectSubmit = function (req, res) {
+	if (vh.vUrl(req.body.url)) {
+		res.redirect(req.body.url)
+	} else {
+		res.send('invalid redirect url')
+	}
+}
+
 module.exports.calc = function (req, res) {
 	if(vh.vEqn(req.body.eqn)){
 		try{

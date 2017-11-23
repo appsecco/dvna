@@ -49,7 +49,9 @@ module.exports = function () {
         res.render('app/adminusers')
     })
 
-    router.get('/redirect', appHandler.redirect)
+    router.get('/redirect', csrfProtection, appHandler.redirect)
+
+    router.post('/redirect', csrfProtection, csrfErrorHandler, appHandler.redirectSubmit)
 
     router.post('/usersearch', authHandler.isAuthenticated, appHandler.userSearch)
 
