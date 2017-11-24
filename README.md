@@ -6,7 +6,7 @@ Damn Vulnerable NodeJS Application (DVNA) is a simple NodeJS application to demo
 
 The application is powered by commonly used libraries such as [express](https://www.npmjs.com/package/express), [passport](https://www.npmjs.com/package/passport), [sequelize](https://www.npmjs.com/package/sequelize), etc.
 
-The application comes with a developer friendly comprehensive guide which can be used to learn, avoid and fix the vulnerabilities. The guide will be made available and will contain the following
+The application comes with a developer friendly comprehensive guide which can be used to learn, avoid and fix the vulnerabilities. The guide available at https://appsecco.com/books/dvna-developers-security-guide/ covers the following
 
 1. Instructions for setting up DVNA
 2. Instructions on exploiting the vulnerabilities
@@ -14,9 +14,17 @@ The application comes with a developer friendly comprehensive guide which can be
 4. Recommendations for avoid such vulnerabilities
 5. References for learning more
 
-## Quick Start
+## Getting Started
 
-Setting up the application using docker is the recommended procedure. For detailed instructions and manual setup and please refer to the guide.
+DVNA can be deployed in three ways
+
+1. For Developers, using docker-compose with auto-reload on code updates
+2. For Security Testers, using the Official image from Docker Hub
+3. For Advanced Users, using a fully manual setup
+
+Detailed instructions on setup and requirements are given in the Guide Gitbook
+
+### Development Setup
 
 Clone this repository
 ```bash
@@ -39,6 +47,58 @@ docker-compose up
 Access the application at http://127.0.0.1:9090/ 
 
 The application will automatically reload on code changes, so feel free to patch and play around with the application.
+
+### Using Official Docker Image
+
+Create a file named `vars.env` with the following configuration
+```
+MYSQL_USER=dvna
+MYSQL_DATABASE=dvna
+MYSQL_PASSWORD=passw0rd
+MYSQL_RANDOM_ROOT_PASSWORD=yes
+MYSQL_HOST=mysql-db
+MYSQL_PORT=3306
+```
+
+Start a MySQL container
+```bash
+docker run --name dvna-mysql --env-file vars.env -d mysql:5.7
+```
+
+Start the application using the official image
+```bash
+docker run --name dvna-app --env-file vars.env --link dvna-mysql:mysql-db -p 9090:9090 appsecco/dvna
+```
+
+Access the application at http://127.0.0.1:9090/ and start testing!
+
+### Manual Setup
+
+Clone the repository
+```bash
+git clone https://github.com/appsecco/dvna; cd dvna
+```
+
+Configure the environment variables with your database information
+```bash
+export MYSQL_USER=dvna
+export MYSQL_DATABASE=dvna
+export MYSQL_PASSWORD=passw0rd
+export MYSQL_HOST=127.0.0.1
+export MYSQL_PORT=3306
+```
+
+Install Dependencies
+```bash
+npm install
+```
+
+Start the application
+```bash
+npm start
+```
+
+Access the application at http://localhost:9090
 
 ## TODO
 

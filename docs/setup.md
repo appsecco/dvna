@@ -1,38 +1,44 @@
 # Setup
 
-It is recommeded to follow the Dockerized setup of the application unless a manual setup is required
+DVNA can be deployed in three ways
+
+1. For Developers, using docker-compose with auto-reload on code updates
+2. For Security Testers, using the Official image from Docker Hub
+3. For Advanced Users, using a fully manual setup
 
 ## Requirements
 
-Dockerized Setup:
+Setup with Docker:
 
 - Docker (Tested working on v1.13.1)
 - Docker Compose (Tested working on v1.17.1)
 
 Setup Without Docker:
 
-- NodeJS (Deveoped using NodeJS v6.11.4)
+- NodeJS (Developed using NodeJS v6.11.4)
 - MySQL Server (Developed using MySQL 5.7)
 
-## Decokerized setup
+### Development Setup
 
 If you do not have Docker and Docker Compose setup, then
 
 Install [Docker](https://docs.docker.com/engine/installation/) first and then 
 [Docker Compose](https://docs.docker.com/compose/install/) on your system. Then follow the instructions below
 
-1. Clone the respository
+Clone the repository
 ```bash
 git clone https://github.com/appsecco/dvna; cd dvna
 ```
-2. Create a file with name `vars.env` in the application's folder with the desired configuration like the example below
+
+Create a file with name `vars.env` in the application's folder with the desired configuration like the example below
 ```
 MYSQL_USER=dvna
 MYSQL_DATABASE=dvna
 MYSQL_PASSWORD=passw0rd
 MYSQL_RANDOM_ROOT_PASSWORD=yes
 ```
-3. Start the application using Docker Compose
+
+Start the application using Docker Compose
 ```bash
 docker-compose up
 ```
@@ -41,7 +47,31 @@ Access the application at http://localhost:9090 and start practicing!
 
 The application will automatically reload on code changes, so feel free to patch and play around.
 
-## Manual Setup
+### Using Official Docker Image
+
+Create a file named `vars.env` with the following configuration
+```
+MYSQL_USER=dvna
+MYSQL_DATABASE=dvna
+MYSQL_PASSWORD=passw0rd
+MYSQL_RANDOM_ROOT_PASSWORD=yes
+MYSQL_HOST=mysql-db
+MYSQL_PORT=3306
+```
+
+Start a MySQL container, unless you want to use your own, in which case configure in the env file above
+```bash
+docker run --name dvna-mysql --env-file vars.env -d mysql:5.7
+```
+
+Start the application using the official image
+```bash
+docker run --name dvna-app --env-file vars.env --link dvna-mysql:mysql-db -p 9090:9090 appsecco/dvna
+```
+
+Access the application at http://127.0.0.1:9090/ and start testing!
+
+### Manual Setup
 
 This is an advanced setup which requires you to have NodeJS setup on your system and access to a MySQL Database. Unless your requirements demands it, its recommended to go with the Dockerized Setup above.
 
@@ -50,11 +80,12 @@ Install [NodeJS](https://nodejs.org/en/download/package-manager/) first.
 
 If you do not have access to an existing MySQL server and would like to setup your own MySQL instance, then refer to this [Getting Started](https://dev.mysql.com/doc/mysql-getting-started/en/) guide. Once the MySQL Sever is setup, create a new database and user for DVNA. You will need to configure these in the environment variables before starting the application.
 
-1. Clone the repository
+Clone the repository
 ```bash
 git clone https://github.com/appsecco/dvna; cd dvna
 ```
-2. Configure the environment variables with your database information. For Windows system, refer to the guide on [Setting up environment variables](http://www.dowdandassociates.com/blog/content/howto-set-an-environment-variable-in-windows-command-line-and-registry/)
+
+Configure the environment variables with your database information. For Windows system, refer to the guide on [Setting up environment variables](http://www.dowdandassociates.com/blog/content/howto-set-an-environment-variable-in-windows-command-line-and-registry/)
 ```bash
 export MYSQL_USER=dvna
 export MYSQL_DATABASE=dvna
@@ -62,11 +93,13 @@ export MYSQL_PASSWORD=passw0rd
 export MYSQL_HOST=127.0.0.1
 export MYSQL_PORT=3306
 ```
-3. Install Dependencies
+
+Install Dependencies
 ```bash
 npm install
 ```
-4. Start the application
+
+Start the application
 ```bash
 npm start
 ```

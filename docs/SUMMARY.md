@@ -1,10 +1,10 @@
 # Summary
 
-* [Cover](cover.md)
+* [Cover](README.md)
 
 ## Introduction
 
-* [Introduction](README.md)
+* [Introduction](intro.md)
 * [Setup](setup.md)
 
 ## Solution
