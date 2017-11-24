@@ -1,8 +1,13 @@
+# Damn Vulnerable NodeJS Application
+
 FROM node:carbon
 LABEL MAINTAINER "Subash SN"
 
 WORKDIR /app
 
-RUN npm install -g nodemon
+COPY . .
 
-CMD npm install ; nodemon
+RUN chmod +x /app/entrypoint.sh \
+	&& npm install
+
+CMD ["bash", "/app/entrypoint.sh"]
