@@ -14,6 +14,8 @@ The application comes with a developer friendly comprehensive guide which can be
 4. Recommendations for avoid such vulnerabilities
 5. References for learning more
 
+The blog post for this release is at https://blog.appsecco.com/damn-vulnerable-nodejs-application-dvna-by-appsecco-7d782d36dc1e
+
 ## Getting Started
 
 DVNA can be deployed in three ways

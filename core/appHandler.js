@@ -173,9 +173,9 @@ module.exports.userEditSubmit = function (req, res) {
 		user.save().then(function () {
 			req.flash('success',"Updated successfully")
 			res.render('app/useredit', {
-				userId: req.user.id,
-				userEmail: req.user.email,
-				userName: req.user.name,
+				userId: req.body.id,
+				userEmail: req.body.email,
+				userName: req.body.name,
 			})
 		})
 	})
