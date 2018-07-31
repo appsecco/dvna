@@ -19,6 +19,10 @@ module.exports = function () {
         })
     })
 
+    router.get('/bulkproducts', authHandler.isAuthenticated, function (req, res) {
+        res.render('app/bulkproducts')
+    })
+
     router.get('/products', authHandler.isAuthenticated, appHandler.listProducts)
 
     router.get('/modifyproduct', authHandler.isAuthenticated, appHandler.modifyProduct)
@@ -54,6 +58,8 @@ module.exports = function () {
     router.post('/useredit', authHandler.isAuthenticated, appHandler.userEditSubmit)
 
     router.post('/calc', authHandler.isAuthenticated, appHandler.calc)
+
+    router.post('/bulkproducts',authHandler.isAuthenticated, appHandler.bulkProducts);
 
     return router
 }

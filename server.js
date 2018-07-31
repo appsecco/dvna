@@ -4,6 +4,7 @@ var passport = require('passport')
 var session = require('express-session')
 var ejs = require('ejs')
 var morgan = require('morgan')
+const fileUpload = require('express-fileupload');
 var config = require('./config/server')
 
 //Initialize Express
@@ -13,8 +14,9 @@ app.use(express.static('public'))
 app.set('view engine','ejs')
 app.use(morgan('tiny'))
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(fileUpload());
 
-// For Reverse proxy support
+// Enable for Reverse proxy support
 // app.set('trust proxy', 1) 
 
 // Intialize Session

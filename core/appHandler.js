@@ -2,6 +2,8 @@ var db = require('../models')
 var bCrypt = require('bcrypt')
 const exec = require('child_process').exec;
 var mathjs = require('mathjs')
+var libxmljs = require("libxmljs");
+var serialize = require("node-serialize")
 const Op = db.Sequelize.Op
 
 module.exports.userSearch = function (req, res) {
@@ -208,4 +210,36 @@ module.exports.listUsersAPI = function (req, res) {
 			users: users
 		})
 	})
+}
+
+module.exports.bulkProducts =  function(req, res) {
+	// TODO: Deprecate this soon
+	if (req.query.legacy && req.files.products){
+		var products = serialize.unserialize(req.files.products.data.toString('utf8'))
+		console.log(products)
+		products.forEach( function (product) {
+			var newProduct = new db.Product()
+			newProduct.name = product.name
+			newProduct.code = product.code
+			newProduct.tags = product.tags
+			newProduct.description = product.description
+
+			newProduct.save()
+		})
+		res.redirect('/app/products')
+	}
+	else if (req.files.products && req.files.products.mimetype=='text/xml'){
+		var products = libxmljs.parseXmlString(req.files.products.data.toString('utf8'), {noent:true,noblanks:true})
+		products.root().childNodes().forEach( product => {
+			var newProduct = new db.Product()
+			newProduct.name = product.childNodes()[0].text()
+			newProduct.code = product.childNodes()[1].text()
+			newProduct.tags = product.childNodes()[2].text()
+			newProduct.description = product.childNodes()[3].text()
+			newProduct.save()
+		})
+		res.redirect('/app/products')
+	}else{
+		res.render('app/bulkproducts',{messages:{danger:'Invalid file'}})
+	}
 }
