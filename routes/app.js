@@ -20,7 +20,7 @@ module.exports = function () {
     })
 
     router.get('/bulkproducts', authHandler.isAuthenticated, function (req, res) {
-        res.render('app/bulkproducts')
+        res.render('app/bulkproducts',{legacy:req.query.legacy})
     })
 
     router.get('/products', authHandler.isAuthenticated, appHandler.listProducts)
@@ -60,6 +60,8 @@ module.exports = function () {
     router.post('/calc', authHandler.isAuthenticated, appHandler.calc)
 
     router.post('/bulkproducts',authHandler.isAuthenticated, appHandler.bulkProducts);
+
+    router.post('/bulkproductslegacy',authHandler.isAuthenticated, appHandler.bulkProductsLegacy);
 
     return router
 }

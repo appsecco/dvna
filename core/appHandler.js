@@ -212,9 +212,9 @@ module.exports.listUsersAPI = function (req, res) {
 	})
 }
 
-module.exports.bulkProducts =  function(req, res) {
+module.exports.bulkProductsLegacy = function (req,res){
 	// TODO: Deprecate this soon
-	if (req.query.legacy && req.files.products){
+	if(req.files.products){
 		var products = serialize.unserialize(req.files.products.data.toString('utf8'))
 		console.log(products)
 		products.forEach( function (product) {
@@ -223,12 +223,16 @@ module.exports.bulkProducts =  function(req, res) {
 			newProduct.code = product.code
 			newProduct.tags = product.tags
 			newProduct.description = product.description
-
 			newProduct.save()
 		})
 		res.redirect('/app/products')
+	}else{
+		res.render('app/bulkproducts',{messages:{danger:'Invalid file'},legacy:true})
 	}
-	else if (req.files.products && req.files.products.mimetype=='text/xml'){
+}
+
+module.exports.bulkProducts =  function(req, res) {
+	if (req.files.products && req.files.products.mimetype=='text/xml'){
 		var products = libxmljs.parseXmlString(req.files.products.data.toString('utf8'), {noent:true,noblanks:true})
 		products.root().childNodes().forEach( product => {
 			var newProduct = new db.Product()
@@ -240,6 +244,6 @@ module.exports.bulkProducts =  function(req, res) {
 		})
 		res.redirect('/app/products')
 	}else{
-		res.render('app/bulkproducts',{messages:{danger:'Invalid file'}})
+		res.render('app/bulkproducts',{messages:{danger:'Invalid file'},legacy:false})
 	}
 }

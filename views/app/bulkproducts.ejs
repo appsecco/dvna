@@ -23,10 +23,10 @@
 
         <div>
             <h3>Upload products</h3>
-            <form encType="multipart/form-data" method="post" action="/app/bulkproducts">
+            <form encType="multipart/form-data" method="post" action="/app/bulkproducts<% if(legacy){%>legacy<%}%>">
                 <div class="input-group mb-3">
                     <div class="products-file">
-                        <input type="file" name="products" class="file-input" id="inputfile" accept=".xml">
+                        <input type="file" name="products" class="file-input" id="inputfile" <% if(!legacy){ %> accept=".xml" <% } %>>
                         <br>
                         <input class="button" type="submit" name="submit" value="Upload">
                     </div>
@@ -35,44 +35,29 @@
         </div>
 
         <div><br>
+            <!-- Handle legacy endpoit /app/bulkproducts?legacy=true -->
+            <% if (!legacy) { %>
             <h3>Sample XML</h3>
-            <xmp>
-                <products>
-                    <product>
-                        <name>Xbox One</name>
-                        <code>23</code>
-                        <tags>gaming console</tags>
-                        <description>Gaming console by Microsoft</description>
-                    </product>
-                    <product>
-                        <name>Playstation 4</name>
-                        <code>26</code>
-                        <tags>gaming console</tags>
-                        <description>Gaming console by Sony</description>
-                    </product>
-                </products>
-            </xmp>
-            <xmp>
-                <products>
-                    <product>
-                        <name>Xbox One</name>
-                        <code>23</code>
-                        <tags>gaming console</tags>
-                        <description>Gaming console by Microsoft</description>
-                    </product>
-                    <product>
-                        <name>Playstation 4</name>
-                        <code>26</code>
-                        <tags>gaming console</tags>
-                        <description>Gaming console by Sony</description>
-                    </product>
-                </products>
-            </xmp>
-            <!-- For legacy endpoit /app/bulkproducts?legacy=true <xmp>[{"name":"Xbox 360","code":"15","tags":"gaming console","description":"Microsoft's flagship gaming console"},{"name":"Playstation 3","code":"17","tags":"gaming console","description":"Sony's flagshipgaming console"}]</xmp> -->
+<pre><xmp>
+<products>
+    <product>
+        <name>Xbox One</name>
+        <code>23</code>
+        <tags>gaming console</tags>
+        <description>Gaming console by Microsoft</description>
+    </product>
+    <product>
+        <name>Playstation 4</name>
+        <code>26</code>
+        <tags>gaming console</tags>
+        <description>Gaming console by Sony</description>
+    </product>
+</products>
+</xmp></pre>
+            <% } else { %>
+                <pre style="white-space: pre-wrap;">[{"name":"Xbox 360","code":"15","tags":"gaming console","description":"Microsoft's flagship gaming console"},{"name":"Playstation 3","code":"17","tags":"gaming console","description":"Sony's flagshipgaming console"}]</pre>
+            <%} %>
         </div>
-
-
-
         </div></div></div>
     <% include ../common/footer %>
 </body>

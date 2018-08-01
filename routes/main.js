@@ -17,9 +17,11 @@ module.exports = function (passport) {
 			vuln_title: vulnDict[req.params.vuln],
 			vuln_scenario: req.params.vuln + '/scenario',
 			vuln_description: req.params.vuln + '/description',
-			vuln_reference: req.params.vuln + '/reference'
+			vuln_reference: req.params.vuln + '/reference',
+			vulnerabilities:vulnDict
 		}, function (err, html) {
 			if (err) {
+				console.log(err)
 				res.status(404).send('404')
 			} else {
 				res.send(html)
@@ -28,7 +30,7 @@ module.exports = function (passport) {
 	})
 
 	router.get('/learn', authHandler.isAuthenticated, function (req, res) {
-		res.render('learn')
+		res.render('learn',{vulnerabilities:vulnDict})
 	})
 
 	router.get('/register', authHandler.isNotAuthenticated, function (req, res) {
