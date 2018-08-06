@@ -98,6 +98,6 @@ Implemented in the following files
 
 **Reference**
 
-- https://www.owasp.org/index.php/Top_10_2013-A1-Injection
-- https://snyk.io/blog/sql-injection-orm-vulnerabilities/
-- https://hackernoon.com/nodejs-security-issue-javascript-node-example-tutorial-vulnerabilities-hack-line-url-command-injection-412011924d1b
+- <https://www.owasp.org/index.php/Top_10-2017_A1-Injection>
+- <https://snyk.io/blog/sql-injection-orm-vulnerabilities/>
+- <https://hackernoon.com/nodejs-security-issue-javascript-node-example-tutorial-vulnerabilities-hack-line-url-command-injection-412011924d1b>

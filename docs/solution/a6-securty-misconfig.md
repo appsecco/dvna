@@ -56,6 +56,6 @@ Implemented in the following files
 - *server.js*
 
 **Reference**
-- https://expressjs.com/en/advanced/best-practice-security.html
-- https://www.owasp.org/index.php/Top_10_2013-A5-Security_Misconfiguration
-- https://blog.risingstack.com/node-js-security-checklist/
+- <https://www.owasp.org/index.php/Top_10-2017_A6-Security_Misconfiguration>
+- <https://expressjs.com/en/advanced/best-practice-security.html>
+- <https://blog.risingstack.com/node-js-security-checklist/>

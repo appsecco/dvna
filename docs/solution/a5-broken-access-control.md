@@ -61,10 +61,52 @@ Implemented in the following files
 - *routes/app.js*
 - *views/app/admin.ejs*
 
+## Missing Authorization check in Edit User
+
+The `userEditSubmit` method fails to validate `id` parameter to ensure that the calling user has appropriate access to the object. This issue can be exploited to reset information for any user identified by id.
+
+http://127.0.0.1:9090/app/useredit
+
+**Vulnerable Code snippet**
+
+*core/apphandler.js*
+```
+...
+module.exports.userEditSubmit = function(req,res){
+    if(req.body.password==req.body.cpassword){
+        db.User.find({where:{'id':req.body.id}}).then(user=>{
+            if(user){
+                user.password = bCrypt.hashSync(req.body.password, bCrypt.genSaltSync(10), null)
+                user.save().then(function(){
+...
+```
+
+Simply changing the user id in the page can lead to exploitation.<br><br>
+![idor1](/resources/idor1.png "IDOR")
+
+**Solution**
+
+A simple check can solve this issue
+```
+if (req.user.id == req.body.id)
+ //do
+else
+ //dont
+```
+
+In our case we can use passports user object at `req.user` for modifying user information
+
+**Fixes**
+
+Implemented in the following files
+
+- *core/appHandler.js*
+
 **Recommendation**
 
 - Try to restrict your functions to maximum extent, White listing is always better than blacklisting
+- Consider any user supplied information as untrusted and always validate user access by sessions
 
 **Reference**
 
-- https://www.owasp.org/index.php/Top_10_2013-A7-Missing_Function_Level_Access_Control
+- <https://www.owasp.org/index.php/Top_10-2017_A5-Broken_Access_Control>

@@ -11,14 +11,18 @@
 
 * [A1 Injection](solution/a1-injection.md)
 * [A2 Broken Authentication and Session Management](solution/a2-broken-auth.md)
-* [A3 Cross-site Scripting](solution/a3-xss.md)
-* [A4 Insecure Direct Object Reference](solution/a4-idor.md)
-* [A5 Security Misconfiguration](solution/a5-securty-misconfig.md)
-* [A6 Sensitive Data Exposure](solution/a6-sensitive-data-exposure.md)
-* [A7 Missing Function Level Access Control](solution/a7-missing-function-level-access-control.md)
-* [A8 Cross-site Request Forgery](solution/a8-csrf.md)
+* [A3 Sensitive Data Exposure](solution/a3-sensitive-data-exposure.md)
+* [A4 XML External Entities](solution/a4-xxe.md)
+* [A5 Broken Access Control](solution/a5-broken-access-control.md)
+* [A6 Security Misconfiguration](solution/a6-securty-misconfig.md)
+* [A7 Cross-site Scripting](solution/a7-xss.md)
+* [A8 Insecure Deseriliaztion](solution/a8-insecure-deserialization.md)
 * [A9 Using Components with Known Vulnerability](solution/a9-using-components-with-known-vulnerability.md)
-* [A10 Unvalidated Redirects and Forwards](solution/a10-unvalidated-redirects-and-forwards.md)
+* [A10 Insufficient Logging and Monitoring](solution/a10-insufficient-logging.md)
+
+## Top 10 2013
+* [A8:2013 Cross-site Request Forgery](solution/ax-csrf.md)
+* [A10:2013 Unvalidated Redirects and Forwards](solution/ax-unvalidated-redirects-and-forwards.md)
 
 ## About
 

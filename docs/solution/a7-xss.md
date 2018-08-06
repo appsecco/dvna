@@ -87,5 +87,6 @@ Implemented in the following files
 
 **Reference**
 
-- https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)
-- https://www.npmjs.com/package/xss-filters
+- <https://www.owasp.org/index.php/Top_10-2017_A6-Security_Misconfiguration>
+- <https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)>
+- <https://www.npmjs.com/package/xss-filters>

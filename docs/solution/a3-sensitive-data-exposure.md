@@ -70,5 +70,5 @@ Implemented in the following files
 
 **Reference**
 
-- https://www.owasp.org/index.php/Top_10_2013-A6-Sensitive_Data_Exposure
-- https://stackoverflow.com/questions/28927836/prevent-sequelize-from-outputting-sql-to-the-console-on-execution-of-query
+- <https://www.owasp.org/index.php/Top_10_2013-A6-Sensitive_Data_Exposure>
+- <https://stackoverflow.com/questions/28927836/prevent-sequelize-from-outputting-sql-to-the-console-on-execution-of-query>
