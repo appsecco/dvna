@@ -232,7 +232,7 @@ module.exports.bulkProductsLegacy = function (req,res){
 
 module.exports.bulkProducts =  function(req, res) {
 	if (req.files.products && req.files.products.mimetype=='text/xml'){
-		var products = libxmljs.parseXmlString(req.files.products.data.toString('utf8'), {noent:true,noblanks:true})
+		var products = libxmljs.parseXmlString(req.files.products.data.toString('utf8'), {noent:false,noblanks:true})
 		products.root().childNodes().forEach( product => {
 			var newProduct = new db.Product()
 			newProduct.name = product.childNodes()[0].text()
