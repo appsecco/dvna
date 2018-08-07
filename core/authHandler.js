@@ -1,6 +1,7 @@
 var db = require('../models')
 var bCrypt = require('bcrypt')
 var md5 = require('md5')
+var winston = require('winston')
 
 module.exports.isAuthenticated = function (req, res, next) {
 	if (req.isAuthenticated()) {
@@ -78,6 +79,8 @@ module.exports.resetPwSubmit = function (req, res) {
 					if (req.body.token == md5(req.body.login)) {
 						user.password = bCrypt.hashSync(req.body.password, bCrypt.genSaltSync(10), null)
 						user.save().then(function () {
+							let username = req.body.login
+							winston.log({level:'info',message:'Password reset', username})
 							req.flash('success', "Passowrd successfully reset")
 							res.redirect('/login')
 						})

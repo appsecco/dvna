@@ -6,6 +6,7 @@ var ejs = require('ejs')
 var morgan = require('morgan')
 const fileUpload = require('express-fileupload');
 var config = require('./config/server')
+var winston = require('winston')
 
 //Initialize Express
 var app = express()
@@ -15,6 +16,15 @@ app.set('view engine','ejs')
 app.use(morgan('tiny'))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(fileUpload());
+
+// Configure winston logger
+winston.configure({
+  level:'info',
+  format: winston.format.json(),
+  transports: [
+    new winston.transports.File({ filename: 'combined.log' })
+  ]
+});
 
 // Enable for Reverse proxy support
 // app.set('trust proxy', 1) 

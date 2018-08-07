@@ -1,6 +1,7 @@
 var router = require('express').Router()
 var vulnDict = require('../config/vulns')
 var authHandler = require('../core/authHandler')
+var winston = require('winston')
 
 module.exports = function (passport) {
 	router.get('/', authHandler.isAuthenticated, function (req, res) {
@@ -38,6 +39,10 @@ module.exports = function (passport) {
 	})
 
 	router.get('/logout', function (req, res) {
+		if(req.user){
+			let username = req.user.login
+			winston.log({level:'info',message:'Logout', username})
+		}
 		req.logout();
 		res.redirect('/');
 	})

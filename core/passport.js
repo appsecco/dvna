@@ -1,7 +1,7 @@
 var db = require('../models')
 var LocalStrategy = require('passport-local').Strategy
 var bCrypt = require('bcrypt')
-
+var winston = require('winston')
 
 module.exports = function (passport) {
 
@@ -37,8 +37,10 @@ module.exports = function (passport) {
                     return done(null, false, req.flash('danger', 'Invalid Credentials'))
                 }
                 if (!isValidPassword(user, password)) {
+                    winston.log({level:'warn',message:'Failed login', username})
                     return done(null, false, req.flash('danger', 'Invalid Credentials'))
                 }
+                winston.log({level:'info',message:'Successful login', username})
                 return done(null, user);
             });
         }))
@@ -68,6 +70,7 @@ module.exports = function (passport) {
                                     name: req.body.name,
                                     login: username
                                 }).then(function (user) {
+                                    winston.log({level:'info',message:'New User', username})
                                     return done(null, user)
                                 })
                             } else {
