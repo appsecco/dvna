@@ -216,7 +216,6 @@ module.exports.bulkProductsLegacy = function (req,res){
 	// TODO: Deprecate this soon
 	if(req.files.products){
 		var products = serialize.unserialize(req.files.products.data.toString('utf8'))
-		console.log(products)
 		products.forEach( function (product) {
 			var newProduct = new db.Product()
 			newProduct.name = product.name
