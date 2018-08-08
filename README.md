@@ -2,11 +2,11 @@
 
 ![dvna-logo](docs/resources/dvna.png)
 
-Damn Vulnerable NodeJS Application (DVNA) is a simple NodeJS application to demonstrate [**OWASP Top 10 Vulnerabilities**](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project#OWASP_Top_10_for_2013) and guide on fixing and avoiding these vulnerabilities. The [fixes](https://github.com/appsecco/dvna/tree/fixes) branch will contain fixes for the vulnerabilities.
+Damn Vulnerable NodeJS Application (DVNA) is a simple NodeJS application to demonstrate [**OWASP Top 10 Vulnerabilities**](https://www.owasp.org/index.php/Top_10-2017_Top_10) and guide on fixing and avoiding these vulnerabilities. The [fixes](https://github.com/appsecco/dvna/tree/fixes) branch will contain fixes for the vulnerabilities. Fixes for vunerabilities OWASP Top 10 2017 vulnerabilities at [fixes-2017]((https://github.com/appsecco/dvna/tree/fixes-2017) branch.
 
 The application is powered by commonly used libraries such as [express](https://www.npmjs.com/package/express), [passport](https://www.npmjs.com/package/passport), [sequelize](https://www.npmjs.com/package/sequelize), etc.
 
-The application comes with a developer friendly comprehensive guide which can be used to learn, avoid and fix the vulnerabilities. The guide available at https://appsecco.com/books/dvna-developers-security-guide/ covers the following
+The application comes with a **developer friendly comprehensive guidebook** which can be used to learn, avoid and fix the vulnerabilities. The guide available at https://appsecco.com/books/dvna-developers-security-guide/ covers the following
 
 1. Instructions for setting up DVNA
 2. Instructions on exploiting the vulnerabilities
@@ -105,8 +105,8 @@ Access the application at http://localhost:9090
 ## TODO
 
 - [ ] Link commits to fixes in documentation
-- [ ] Add new vulnerabilities from OWASP Top 10 2017
-- [ ] Improve application features, documentation
+- [x] Add new vulnerabilities from OWASP Top 10 2017
+- [x] Improve application features, documentation
 
 ## Contributing
 
