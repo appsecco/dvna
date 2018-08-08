@@ -36,7 +36,7 @@ Log from anywhere
 var winston = requir('winston')
 ...
 if (!isValidPassword(user, password)) {
-    logger.log({level:'warn',message:'Failed login attempt for ', username})
+    winston.log({level:'warn',message:'Failed login attempt for ', username})
     return done(null, false, req.flash('danger', 'Invalid Credentials'))
 }
 ...
