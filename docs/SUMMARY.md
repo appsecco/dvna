@@ -10,7 +10,7 @@
 ## Solution
 
 * [A1 Injection](solution/a1-injection.md)
-* [A2 Broken Authentication and Session Management](solution/a2-broken-auth.md)
+* [A2 Broken Authentication](solution/a2-broken-auth.md)
 * [A3 Sensitive Data Exposure](solution/a3-sensitive-data-exposure.md)
 * [A4 XML External Entities](solution/a4-xxe.md)
 * [A5 Broken Access Control](solution/a5-broken-access-control.md)

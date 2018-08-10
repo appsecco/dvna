@@ -1,4 +1,4 @@
-# Broken Authentication and Session Management
+# Broken Authentication
 
 ## Insecure Reset Password
 

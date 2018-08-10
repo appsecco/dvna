@@ -1,4 +1,4 @@
-# Sensitive Data Disclosure
+# Sensitive Data Exposure
 
 ## Hashed Passwords Disclosed
 

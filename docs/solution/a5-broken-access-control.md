@@ -1,5 +1,4 @@
-# Missing Function Level Access Control
-
+# Broken Access Control
 
 ## Unauthorized Access to Users API
 
