@@ -41,9 +41,11 @@ Implemented in the following files
 - *server.js*
 - *views/app/products.ejs*
 
+The fix has been implemented in this [commit](https://github.com/appsecco/dvna/commit/6acbb14b51df84d4c4986d95f8fa4e3a6d600e35)
+
 ## Stored XSS in Product Listing
 
-Another XSS vulnerability exists in the same page, however at a different location
+Another XSS vulnerability exists in the same page, however at a different location. By supplying an input such as `<script>alert('xss')</script>`, we can verify the XSS
 
 **Vulnerable Code snippet**
 
@@ -76,6 +78,8 @@ Implemented in the following files
 
 - *server.js*
 - *views/app/products.ejs*
+
+The fix has been implemented in this [commit](https://github.com/appsecco/dvna/commit/6acbb14b51df84d4c4986d95f8fa4e3a6d600e35)
 
 **Recommendation**
 

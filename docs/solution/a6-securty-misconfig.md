@@ -39,6 +39,8 @@ Implemented in the following files
 
 - *core/appHandler.js*
 
+The fix has been implemented in this [commit](https://github.com/appsecco/dvna/commit/9b17e5ae55a6bf0ec8ba41c25956c26e6e62badd)
+
 ## X-Powered-By header
 
 ![powered-by](/resources/powered-by.png "X-Powered-By")
@@ -54,6 +56,8 @@ Disable it using  `app.disable('x-powered-by')` in express
 Implemented in the following files
 
 - *server.js*
+
+The fix has been implemented in this [commit](https://github.com/appsecco/dvna/commit/e5810006cb91fb22bc6287f2dd67ba7c779d26fa)
 
 **Reference**
 - <https://www.owasp.org/index.php/Top_10-2017_A6-Security_Misconfiguration>

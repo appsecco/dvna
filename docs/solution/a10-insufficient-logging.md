@@ -50,6 +50,8 @@ Implemented in the following files
 - *core/passport.js*
 - *core/authHandler.js*
 
+The fix has been implemented in this [commit](https://github.com/appsecco/dvna/commit/56c5e82c1a000e26ae19afb67b6696d634ceab2e)
+
 **Recommendation**
 
 - Log all sensitive operations by default

@@ -53,6 +53,8 @@ Implemented in the following file
 
 - *core/appHandler.js*
 
+The fix has been implemented in this [commit](https://github.com/appsecco/dvna/commit/15f9dc298ff8e46f0dbeca6b260416c086db2446)
+
 **Recommendation**
 
 - Ensure that External entity parsing is disabled

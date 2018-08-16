@@ -39,6 +39,8 @@ Implemented in the following files
 - *views/app/modifyproducts.ejs*
 - *views/app/useredit.ejs*
 
+The fix has been implemented in this [commit](https://github.com/appsecco/dvna/commit/2c88ab87f19a9d124c925d33f346ec3897038eea)
+
 **Reference**
 
 - https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)

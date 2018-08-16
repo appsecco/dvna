@@ -9,7 +9,7 @@ http://127.0.0.1:9090/app/usersearch
 By injecting a single quote `'`, we see an error has occurred.
 ![sqli1](/resources/sqli1.png "SQLi Trigger")
 
-An attacker can exploit this further and obtain potentially sensitive information from the database
+An attacker can exploit this further and obtain potentially sensitive information from the database by supplying the input `' UNION SELECT password,1 from Users where login='user' #`
 ![sqli2](/resources/sqli2.png "Exploiting SQLi")
 
 **Vulnerable Code snippet**
@@ -42,6 +42,8 @@ But it is recommended to explicitly validate/sanitize inputs
 Implemented in the following files
 
 - *core/appHandler.js*
+
+The fix has been implemented in this [commit](https://github.com/appsecco/dvna/commit/dc1f9c54685eb04f55e444370d6d622834e4cc00)
 
 **Recommendation**
 
@@ -88,6 +90,8 @@ if (vh.vIP(req.body.address)){
 Implemented in the following files
 
 - *core/appHandler.js*
+
+The fix has been implemented in this [commit](https://github.com/appsecco/dvna/commit/4fe36fcfbd615fc9ea340e1238be33dd0d140ef8)
 
 **Recommendation**
 

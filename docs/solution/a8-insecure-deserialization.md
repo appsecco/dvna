@@ -44,6 +44,8 @@ Implemented in the following files
 
 - *core/appHandler.js*
 
+The fix has been implemented in this [commit](https://github.com/appsecco/dvna/commit/624a4ee88b3af804271d183f2921448851ddbfff)
+
 **Recommendation**
 
 - Use secure and recommended ways to implement application features

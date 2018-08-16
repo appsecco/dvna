@@ -60,6 +60,8 @@ Implemented in the following files
 - *routes/app.js*
 - *views/app/admin.ejs*
 
+The fix has been implemented in this [commit](https://github.com/appsecco/dvna/commit/1d10d266567a6b721bd368500838756e1cd7966b)
+
 ## Missing Authorization check in Edit User
 
 The `userEditSubmit` method fails to validate `id` parameter to ensure that the calling user has appropriate access to the object. This issue can be exploited to reset information for any user identified by id.
@@ -100,6 +102,8 @@ In our case we can use passports user object at `req.user` for modifying user in
 Implemented in the following files
 
 - *core/appHandler.js*
+
+The fix has been implemented in this [commit](https://github.com/appsecco/dvna/commit/edfe31c81e8594ac336b3fd3a558e174af9fe7b3)
 
 **Recommendation**
 

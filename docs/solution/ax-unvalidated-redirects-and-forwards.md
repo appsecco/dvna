@@ -36,5 +36,7 @@ Implemented in the following files
 - *views/app/redirect.ejs*
 - *core/appHandler.js*
 
+The fix has been implemented in this [commit](https://github.com/appsecco/dvna/commit/0df0980a19778e0cf627cd09b365e3e84023cf75)
+
 **Reference**
 - https://www.owasp.org/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet

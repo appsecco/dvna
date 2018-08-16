@@ -38,6 +38,8 @@ Implemented in the following files
 
 - *core/appHandler.js*
 
+The fix has been implemented in this [commit](https://github.com/appsecco/dvna/commit/7c28c2e007ac48badc604e52621c37bbb8da8fbd)
+
 ## Logging of sensitive information
 
 ![info-dis](/resources/info-dis2.png "Password Hash Disclosed")
@@ -62,6 +64,8 @@ var sequelize = new Sequelize(config.database, config.username, config.password,
 Implemented in the following files
 
 - *models/index.js*
+
+The fix has been implemented in this [commit](https://github.com/appsecco/dvna/commit/60ed581799f2257e1be2d8a7747014d6b3d123af)
 
 **Recommendation**
 
