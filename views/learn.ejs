@@ -10,10 +10,21 @@
         <div class='row'>
             <div class='col-md-3'>
                 <div class='list-group'>
+                    <h4>OWASP Top 10 2017</h4>
                     <% for (var vulnKey in vulnerabilities) { %>
+                        <% if (vulnKey[1]!='x') { %>
                         <a href="/learn/vulnerability/<%=vulnKey%>" class='list-group-item'>
                             <i class='fa fa-angle-double-right'></i> <%=vulnerabilities[vulnKey]%>
                         </a>
+                        <% } %>
+                    <% } %>
+                    <h4>OWASP Top 10 2013</h4>
+                    <% for (var vulnKey in vulnerabilities) { %>
+                        <% if (vulnKey[1]=='x') { %>
+                        <a href="/learn/vulnerability/<%=vulnKey%>" class='list-group-item'>
+                            <i class='fa fa-angle-double-right'></i> <%=vulnerabilities[vulnKey]%>
+                        </a>
+                        <% } %>
                     <% } %>
                 </div>
             </div>
@@ -29,11 +40,23 @@
                 <% } %>                
                 <h3>Welcome to <strong>Damn Vulnerable NodeJS Application</strong></h3>
                 <p>The <i>Damn Vulnerable NodeJS Application</i> implements a set of intentionally vulnerable functions in NodeJS for learning purpose.
-                Start by selecting one of the vulnerability class from the left menu or select one of the link below: </p>
-
+                Start by selecting one of the vulnerability class from the left menu or select one of the link below </p>
+                
+                <h4>OWASP Top 10 2017</h4>
+                <ul>
+                    
+                    <% for (var vulnKey in vulnerabilities) { %>
+                        <% if (vulnKey[1]!='x') { %>
+                        <li><a href='/learn/vulnerability/<%=vulnKey%>'> <%=vulnerabilities[vulnKey]%> </a></li>
+                        <% } %>
+                    <% } %>
+                </ul>
+                <h4>OWASP Top 10 2013</h4>
                 <ul>
                     <% for (var vulnKey in vulnerabilities) { %>
-                    <li><a href='/learn/vulnerability/<%=vulnKey%>'> <%=vulnerabilities[vulnKey]%> </a></li>
+                        <% if (vulnKey[1]=='x') { %>
+                        <li><a href='/learn/vulnerability/<%=vulnKey%>'> <%=vulnerabilities[vulnKey]%> </a></li>
+                        <% } %>
                     <% } %>
                 </ul>
             </div>
