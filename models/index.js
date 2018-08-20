@@ -4,16 +4,11 @@ var fs = require("fs");
 var path = require("path");
 var Sequelize = require("sequelize");
 var env = process.env.NODE_ENV || "development";
-var config = require("../config/db.js")
 
-if (process.env.DATABASE_URL) {
-  var sequelize = new Sequelize(process.env.DATABASE_URL);
-} else {
-  var sequelize = new Sequelize(config.database, config.username, config.password, {
-    host: config.host,
-    dialect: config.dialect
-  });
-}
+var sequelize = new Sequelize({
+  dialect: 'sqlite',
+  storage: 'db.sqlite'
+});
 
 sequelize
   .authenticate()
