@@ -81,6 +81,40 @@ Implemented in the following files
 
 The fix has been implemented in this [commit](https://github.com/appsecco/dvna/commit/6acbb14b51df84d4c4986d95f8fa4e3a6d600e35)
 
+## DOM XSS in user listing
+
+- When registering a user, use the value `<img src="a" onerror="alert(document.domain)">` for "Name"
+- When any logged in user visits `/app/admin/users`, an XHR GET request is made to `/app/admin/usersapi` to retrieve the details of users on the application. The details retrieved are used to update the page using `innerHTML` and the details are rendered directly thus making the page vulnerable to XSS
+
+**Vulnerable Code snippet**
+
+*views/app/adminusers.ejs*
+
+```
+...
+c_id.innerHTML = users[i].id;
+c_name.innerHTML = users[i].name;
+c_email.innerHTML = users[i].email;
+...
+```
+
+User supplied input is injected into the page as markup using `innerHTML`. This issue can be exploited to inject arbitrary scripting code to perform a Cross-site Scripting attack.
+
+**Solution**
+
+```
+...
+c_id.textContent = users[i].id;
+c_name.textContent = users[i].name;
+c_email.textContent = users[i].email;
+...
+```
+The most fundamental safe way to populate the DOM with untrusted data is to use the safe assignment property, `textContent`.
+
+**Fixes**
+
+TBD
+
 **Recommendation**
 
 - Use Security header `X-XSS-Protection` to prevent reflected XSS attacks
