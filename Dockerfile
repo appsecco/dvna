@@ -1,13 +1,11 @@
 # Damn Vulnerable NodeJS Application
+# https://github.com/appsecco/dvna
 
-FROM node:carbon
+FROM node:carbon-slim
 LABEL MAINTAINER "Subash SN"
 
 WORKDIR /app
 
-COPY . .
+RUN npm install -g nodemon
 
-RUN chmod +x /app/entrypoint.sh \
-	&& npm install
-
-CMD ["bash", "/app/entrypoint.sh"]
+CMD ["/bin/bash", "/app/entrypoint.sh"]
