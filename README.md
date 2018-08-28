@@ -16,29 +16,16 @@ The application comes with a **developer friendly comprehensive guidebook** whic
 
 The blog post for this release is at https://blog.appsecco.com/damn-vulnerable-nodejs-application-dvna-by-appsecco-7d782d36dc1e
 
-## Getting Started
+## Getting Started (SQLite)
 
-DVNA can be deployed in three ways
-
-1. For Developers, using docker-compose with auto-reload on code updates
-2. For Security Testers, using the Official image from Docker Hub
-3. For Advanced Users, using a fully manual setup
-
-Detailed instructions on setup and requirements are given in the Guide Gitbook
-
-### Development Setup
-
-Clone this repository
+Clone the repository
 ```bash
 git clone https://github.com/appsecco/dvna; cd dvna
 ```
 
-Create a `vars.env` with the desired database configuration
-```
-MYSQL_USER=dvna
-MYSQL_DATABASE=dvna
-MYSQL_PASSWORD=passw0rd
-MYSQL_RANDOM_ROOT_PASSWORD=yes
+Switch to SQLite branch
+```bash
+git checkout sqlite
 ```
 
 Start the application and database using docker-compose
