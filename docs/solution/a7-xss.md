@@ -111,10 +111,6 @@ c_email.textContent = users[i].email;
 ```
 The most fundamental safe way to populate the DOM with untrusted data is to use the safe assignment property, `textContent`.
 
-**Fixes**
-
-TBD
-
 **Recommendation**
 
 - Use Security header `X-XSS-Protection` to prevent reflected XSS attacks
