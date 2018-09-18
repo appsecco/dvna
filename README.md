@@ -18,76 +18,13 @@ The blog post for this release is at https://blog.appsecco.com/damn-vulnerable-n
 
 ## Getting Started (SQLite)
 
-Clone the repository
+* Start the application using below docker command
+
 ```bash
-git clone https://github.com/appsecco/dvna; cd dvna
+docker run --name dvna -p 9090:9090 -d appsecco/dvna:sqlite
 ```
 
-Switch to SQLite branch
-```bash
-git checkout sqlite
-```
-
-Start the application and database using docker-compose
-```bash
-docker-compose up
-```
-
-Access the application at http://127.0.0.1:9090/ 
-
-The application will automatically reload on code changes, so feel free to patch and play around with the application.
-
-### Using Official Docker Image
-
-Create a file named `vars.env` with the following configuration
-```
-MYSQL_USER=dvna
-MYSQL_DATABASE=dvna
-MYSQL_PASSWORD=passw0rd
-MYSQL_RANDOM_ROOT_PASSWORD=yes
-MYSQL_HOST=mysql-db
-MYSQL_PORT=3306
-```
-
-Start a MySQL container
-```bash
-docker run --name dvna-mysql --env-file vars.env -d mysql:5.7
-```
-
-Start the application using the official image
-```bash
-docker run --name dvna-app --env-file vars.env --link dvna-mysql:mysql-db -p 9090:9090 appsecco/dvna
-```
-
-Access the application at http://127.0.0.1:9090/ and start testing!
-
-### Manual Setup
-
-Clone the repository
-```bash
-git clone https://github.com/appsecco/dvna; cd dvna
-```
-
-Configure the environment variables with your database information
-```bash
-export MYSQL_USER=dvna
-export MYSQL_DATABASE=dvna
-export MYSQL_PASSWORD=passw0rd
-export MYSQL_HOST=127.0.0.1
-export MYSQL_PORT=3306
-```
-
-Install Dependencies
-```bash
-npm install
-```
-
-Start the application
-```bash
-npm start
-```
-
-Access the application at http://localhost:9090
+* Access the application at http://127.0.0.1:9090
 
 ## TODO
 
