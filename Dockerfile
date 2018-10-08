@@ -8,6 +8,9 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm install
+RUN apt-get update && \
+    apt-get install -y iputils-ping
+RUN npm install -g nodemon && \
+    npm install
 
 CMD ["npm", "start"]
