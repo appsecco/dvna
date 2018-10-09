@@ -1,1 +1,0 @@
-![dvna](resources/cover.png)
