@@ -18,6 +18,16 @@ Setup Without Docker:
 - NodeJS (Developed using NodeJS v6.11.4)
 - MySQL Server (Developed using MySQL 5.7)
 
+### Quick start
+
+On a system with Docker installed, run
+
+```bash
+docker run --name dvna -p 9090:9090 -d appsecco/dvna:sqlite
+```
+
+Access the application at http://127.0.0.1:9090
+
 ### Development Setup
 
 If you do not have Docker and Docker Compose setup, then

