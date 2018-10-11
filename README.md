@@ -16,6 +16,16 @@ The application comes with a **developer friendly comprehensive guidebook** whic
 
 The blog post for this release is at https://blog.appsecco.com/damn-vulnerable-nodejs-application-dvna-by-appsecco-7d782d36dc1e
 
+## Quick start
+
+Try DVNA on with a single command with Docker
+
+```bash
+docker run --name dvna -p 9090:9090 -d appsecco/dvna:sqlite
+```
+
+Access the application at http://127.0.0.1:9090/ 
+
 ## Getting Started
 
 DVNA can be deployed in three ways
