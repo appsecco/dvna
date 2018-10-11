@@ -18,7 +18,7 @@ The blog post for this release is at https://blog.appsecco.com/damn-vulnerable-n
 
 ## Quick start
 
-Try DVNA on with a single command with Docker
+Try DVNA using a single command with Docker
 
 ```bash
 docker run --name dvna -p 9090:9090 -d appsecco/dvna:sqlite
