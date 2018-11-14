@@ -6,6 +6,8 @@ Damn Vulnerable NodeJS Application (DVNA) is a simple NodeJS application to demo
 
 The application is powered by commonly used libraries such as [express](https://www.npmjs.com/package/express), [passport](https://www.npmjs.com/package/passport), [sequelize](https://www.npmjs.com/package/sequelize), etc.
 
+## Developer Security Guide book
+
 The application comes with a **developer friendly comprehensive guidebook** which can be used to learn, avoid and fix the vulnerabilities. The guide available at https://appsecco.com/books/dvna-developers-security-guide/ covers the following
 
 1. Instructions for setting up DVNA
