@@ -71,7 +71,7 @@ module.exports = function (passport) {
                                     return done(null, user)
                                 })
                             } else {
-                                return done(null, false, req.flash('danger', 'Passwords dont match'));
+                                return done(null, false, req.flash('danger', 'Passwords do not match'));
                             }
                         } else {
                             return done(null, false, req.flash('danger', 'Input field(s) missing'));

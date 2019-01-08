@@ -152,7 +152,7 @@ module.exports.userEditSubmit = function (req, res) {
 				if (req.body.password == req.body.cpassword) {
 					user.password = bCrypt.hashSync(req.body.password, bCrypt.genSaltSync(10), null)
 				}else{
-					req.flash('warning', 'Passwords dont match')
+					req.flash('warning', 'Passwords do not match')
 					res.render('app/useredit', {
 						userId: req.user.id,
 						userEmail: req.user.email,
