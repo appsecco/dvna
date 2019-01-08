@@ -61,7 +61,7 @@ module.exports.resetPw = function (req, res) {
 			}
 		})
 	} else {
-		req.flash('danger', "Non Existant login username")
+		req.flash('danger', "Non Existent login username")
 		res.redirect('/forgotpw')
 	}
 }
@@ -78,7 +78,7 @@ module.exports.resetPwSubmit = function (req, res) {
 					if (req.body.token == md5(req.body.login)) {
 						user.password = bCrypt.hashSync(req.body.password, bCrypt.genSaltSync(10), null)
 						user.save().then(function () {
-							req.flash('success', "Passowrd successfully reset")
+							req.flash('success', "Password successfully reset")
 							res.redirect('/login')
 						})
 					} else {
@@ -91,7 +91,7 @@ module.exports.resetPwSubmit = function (req, res) {
 				}
 			})
 		} else {
-			req.flash('danger', "Passowords do not match")
+			req.flash('danger', "Passwords do not match")
 			res.render('resetpw', {
 				login: req.query.login,
 				token: req.query.token
