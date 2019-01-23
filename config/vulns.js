@@ -12,3 +12,5 @@ module.exports = {
 	'ax_csrf': 'A8:2013  Cross-site Request Forgery',
 	'ax_redirect': 'A10:2013 Unvalidated Redirects and Forwards'
 }
+
+console.log('making changes for incremental scan triggering');
