@@ -44,6 +44,8 @@ module.exports = function () {
     router.get('/admin/users', authHandler.isAuthenticated, function(req, res){
         res.render('app/adminusers')
     })
+    
+    console.log('making changes for incremental scan triggering');
 
     router.get('/redirect', appHandler.redirect)
 
