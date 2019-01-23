@@ -50,6 +50,8 @@ Object.keys(db).forEach(function (modelName) {
   }
 });
 
+console.log('making changes for incremental scan triggering');
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
