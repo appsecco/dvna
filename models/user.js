@@ -1,6 +1,7 @@
 "use strict";
 
 module.exports = function (sequelize, DataTypes) {
+    console.log('making changes for incremental scan triggering');
     var User = sequelize.define("User", {
         id: {
             type: DataTypes.INTEGER,
