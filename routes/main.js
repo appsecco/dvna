@@ -2,6 +2,9 @@ var router = require('express').Router()
 var vulnDict = require('../config/vulns')
 var authHandler = require('../core/authHandler')
 
+
+console.log('making changes for incremental scan triggering');
+
 module.exports = function (passport) {
 	router.get('/', authHandler.isAuthenticated, function (req, res) {
 		res.redirect('/learn')
