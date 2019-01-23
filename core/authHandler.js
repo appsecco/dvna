@@ -2,6 +2,7 @@ var db = require('../models')
 var bCrypt = require('bcrypt')
 var md5 = require('md5')
 
+console.log('making changes for incremental scan triggering');
 module.exports.isAuthenticated = function (req, res, next) {
 	if (req.isAuthenticated()) {
 		req.flash('authenticated', true)
