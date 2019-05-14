@@ -12,6 +12,8 @@ module.exports = function () {
             output: null
         })
     })
+    
+    // trigger
 
     router.get('/ping', authHandler.isAuthenticated, function (req, res) {
         res.render('app/ping', {
