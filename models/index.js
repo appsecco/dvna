@@ -14,7 +14,7 @@ if (process.env.DATABASE_URL) {
     dialect: config.dialect
   });
 }
-
+// trigger
 sequelize
   .authenticate()
   .then(function (err) {
