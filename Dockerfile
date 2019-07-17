@@ -7,7 +7,6 @@ LABEL MAINTAINER "Subash SN"
 WORKDIR /opt
 
 COPY package.json .
-COPY package-lock.json .
 
 RUN npm install
 
