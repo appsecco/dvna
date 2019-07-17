@@ -2,7 +2,7 @@
 # docker run --name dvna -p 9090:9090 -d appsecco/dvna:sqlite
 
 FROM node:carbon-slim
-LABEL MAINTAINER "Subash SN"
+LABEL MAINTAINER "Appsecco Ops"
 
 WORKDIR /opt
 
