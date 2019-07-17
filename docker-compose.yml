@@ -1,0 +1,10 @@
+version: '2'
+services:
+  app:
+    build: .
+    command: nodemon
+    volumes:
+      - .:/app
+    ports:
+      - "9090:9090"
+

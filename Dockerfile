@@ -4,13 +4,22 @@
 FROM node:carbon-slim
 LABEL MAINTAINER "Subash SN"
 
+WORKDIR /opt
+
+COPY package.json .
+COPY package-lock.json .
+
+RUN npm install
+
 WORKDIR /app
 
 COPY . .
 
 RUN apt-get update && \
     apt-get install -y iputils-ping
-RUN npm install -g nodemon && \
-    npm install
+
+RUN npm install -g nodemon
+
+ENV NODE_PATH=/opt/node_modules
 
 CMD ["npm", "start"]
