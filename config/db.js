@@ -8,3 +8,4 @@ module.exports = {
 }
 
 console.log('making changes for incremental scan triggering');
+console.log('asdf');
