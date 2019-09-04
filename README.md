@@ -129,7 +129,5 @@ In case of bugs in the application, please create an issue on github. Pull reque
 
 ## License
 
-TEST TEST TEST
 
-TEST TEST TEST
 
