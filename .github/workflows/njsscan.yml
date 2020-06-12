@@ -1,0 +1,17 @@
+name: njsscan
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  njsscan:
+    runs-on: ubuntu-latest
+    name: njsscan check
+    steps:
+    - uses: actions/checkout@v1
+    - name: njsscan
+      id: njsscan
+      uses: ajinabraham/njsscan-action@v5
+      with:
+        args: '.'
