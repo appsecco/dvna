@@ -1,4 +1,4 @@
-# Damn Vulnerable NodeJS Application (DVNA) 
+# Damn Vulnerable NodeJS Application (DVNA) - njsscan action demo
 
 ![dvna-logo](docs/resources/dvna.png)
 
