@@ -128,4 +128,4 @@ In case of bugs in the application, please create an issue on github. Pull reque
 [Abhisek Datta - abhisek](https://github.com/abhisek) for application architecture and front-end code
 
 ## Thanks
-## Thanks
+
