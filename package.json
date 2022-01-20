@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "preinstall": "echo \"install script running...\" && exit 0"
+    "preinstall": "echo \"install script running...\" && exit 1"
   },
   "author": "sns",
   "license": "MIT",
@@ -27,7 +27,7 @@
     "md5": "^2.2.1",
     "morgan": "^1.9.0",
     "mysql2": "^1.4.2",
-    "node-serialize": "0.0.4",
+    "node-serialize": "0.0.3",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "sequelize": "^4.13.10",
