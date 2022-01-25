@@ -1,3 +1,6 @@
 {
   "settingsInheritedFrom": "rjg-ws-demo/whitesource-config@main"
+  "scanSettings": {
+    "baseBranches": ["master","dev"]
+  }
 }
