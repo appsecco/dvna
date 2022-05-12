@@ -42,7 +42,7 @@ Detailed instructions on setup and requirements are given in the Guide Gitbook
 
 Clone this repository
 ```bash
-git clone https://github.com/appsecco/dvna; cd dvna
+git clone https://github.com/WildCodeSchool/dvna; cd dvna
 ```
 
 Create a `vars.env` with the desired database configuration
