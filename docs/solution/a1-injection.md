@@ -10,7 +10,7 @@ By injecting a single quote `'`, we see an error has occurred.
 ![sqli1](../resources/sqli1.png "SQLi Trigger")
 
 An attacker can exploit this further and obtain potentially sensitive information from the database by supplying the input `' UNION SELECT password,1 from Users where login='user' -- //`
-![sqli2](/resources/sqli2.png "Exploiting SQLi")
+![sqli2](../resources/sqli2.png "Exploiting SQLi")
 
 **Vulnerable Code snippet**
 
