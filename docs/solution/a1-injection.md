@@ -58,7 +58,7 @@ http://127.0.0.1:9090/app/ping
 
 
 By injecting `x ; id`, we are able to see that the `id` command has been executed.
-![ci1](/resources/ci1.png "Command injection")
+![ci1](../resources/ci1.png "Command injection")
 
 **Vulnerable Code snippet**
 
