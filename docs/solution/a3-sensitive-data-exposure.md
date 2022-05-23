@@ -2,7 +2,7 @@
 
 ## Hashed Passwords Disclosed
 
-![info-dis](/resources/info-dis.png "Password Hash Disclosed")
+![info-dis](../resources/info-dis.png "Password Hash Disclosed")
 
 The Admin API endpoint at http://127.0.0.1:9090/app/admin/api/users sends the entire user object to the front end. Even if the application/page rendering this may not display the password, it's critical that only necessary information is sent instead of the entire object
 
@@ -42,7 +42,7 @@ The fix has been implemented in this [commit](https://github.com/appsecco/dvna/c
 
 ## Logging of sensitive information
 
-![info-dis](/resources/info-dis2.png "Password Hash Disclosed")
+![info-dis](../resources/info-dis2.png "Password Hash Disclosed")
 
 By default, Sequelize logs every query using `console.log`, this could be a serious issue if these logs are stored to disk or worse, sent elsewhere for analytics or other purposes
 

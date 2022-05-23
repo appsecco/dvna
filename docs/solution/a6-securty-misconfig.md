@@ -2,7 +2,7 @@
 
 ## Application sends Stack Trace
 
-![secmis1](/resources/secmis1.png "Security Misconfiguration")
+![secmis1](../resources/secmis1.png "Security Misconfiguration")
 An invalid input `XD` triggers a stack trace in the calculator endpoint at
 
 http://127.0.0.1:9090/app/calc
@@ -43,7 +43,7 @@ The fix has been implemented in this [commit](https://github.com/appsecco/dvna/c
 
 ## X-Powered-By header
 
-![powered-by](/resources/powered-by.png "X-Powered-By")
+![powered-by](../resources/powered-by.png "X-Powered-By")
 
 The `X-Powered-By : Express` header is sent by default in every response and disabling this is a good way to prevent attackers from fingerprinting your application.
 

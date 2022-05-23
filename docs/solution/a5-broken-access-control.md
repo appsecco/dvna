@@ -33,7 +33,7 @@ if(!isAdmin){
 
 By checking the page source, we are able to see the `List Users API` that isn't visible in the Dashboard.
 
-![missing-fn-access](/resources/missing-fn-access.png "API Hidden in Front End")
+![missing-fn-access](../resources/missing-fn-access.png "API Hidden in Front End")
 
 The API endpoint doesn't check whether the requesting user is an admin. Assuming that an attacker will not be able to access your endpoints because they are hidden is a very bad practice.
 
@@ -83,7 +83,7 @@ module.exports.userEditSubmit = function(req,res){
 ```
 
 Simply changing the user id in the page can lead to exploitation.<br><br>
-![idor1](/resources/idor1.png "IDOR")
+![idor1](../resources/idor1.png "IDOR")
 
 **Solution**
 

@@ -1,6 +1,6 @@
 # Cross-site Scripting
 
-![xss1](/resources/xss1.png "XSS")
+![xss1](../resources/xss1.png "XSS")
 with input *Inconspicuous Pizza&lt;script&gt;alert('Cookie:'+document.cookie)&lt;/script&gt;*
 
 ## Reflected XSS in Search Query

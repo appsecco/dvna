@@ -2,7 +2,7 @@
 
 The `Bulk Import` feature at http://127.0.0.1:9090/app/bulkproducts is vulnerable to XML External Entity attack.
 
-![xxe1](/resources/xxe1.png)
+![xxe1](../resources/xxe1.png)
 
 This can be easily exploited by supplying an input like the one below
 
@@ -21,7 +21,7 @@ This can be easily exploited by supplying an input like the one below
 
 The resulting product's description will have the contents of `/etc/passwd`
 
-![xxe2](/resources/xxe2.png)
+![xxe2](../resources/xxe2.png)
 
 **Vulnerable Code snippet**
 
