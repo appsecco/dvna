@@ -1,0 +1,14 @@
+name: Snyk Scan
+on: workflow_dispatch
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        with:
+          command: monitor
+          args: --org=${{ secrets.ORG_ID }}
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
