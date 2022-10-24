@@ -1,4 +1,4 @@
-# Damn Vulnerable NodeJS Application (DVNA) 
+# Damn Vulnerable NodeJS Application (DVNA)
 
 ![dvna-logo](docs/resources/dvna.png)
 
@@ -9,24 +9,18 @@ The application is powered by commonly used libraries such as [express](https://
 ### Setup
 
 Clone this repository
+
 ```bash
 git clone https://github.com/WildCodeSchool/dvna; cd dvna
 ```
 
-Create a `vars.env` with the desired database configuration
-```
-MYSQL_USER=dvna
-MYSQL_DATABASE=dvna
-MYSQL_PASSWORD=passw0rd
-MYSQL_RANDOM_ROOT_PASSWORD=yes
-```
-
 Start the application and database using docker-compose
+
 ```bash
 docker-compose up
 ```
 
-Access the application at http://127.0.0.1:9090/ 
+Access the application at http://127.0.0.1:9090/
 
 The application will automatically reload on code changes, so feel free to patch and play around with the application.
 
@@ -35,6 +29,7 @@ The application will automatically reload on code changes, so feel free to patch
 In case of bugs in the application, please create an issue on github. Pull requests are highly welcome!
 
 ## Thanks
+
 [Abhisek Datta - abhisek](https://github.com/abhisek) for application architecture and front-end code
 
 ## License
