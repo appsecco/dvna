@@ -17,7 +17,7 @@ git clone https://github.com/WildCodeSchool/dvna; cd dvna
 Start the application and database using docker-compose
 
 ```bash
-docker-compose up
+docker compose up --build
 ```
 
 Access the application at http://127.0.0.1:9090/
