@@ -1,6 +1,6 @@
 {
   "name": "dvna",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "Damn Vulnerable NodeJS Application",
   "main": "server.js",
   "directories": {
