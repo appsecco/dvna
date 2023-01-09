@@ -6,7 +6,7 @@ services:
     container_name: dvna-app
     image: rp1sne22/dvna-sne22-rp1:1.2
     ports:
-      - "9090:9090"
+      - "9091:9090"
     volumes:
       - .:/app
     depends_on:
