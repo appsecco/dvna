@@ -31,7 +31,7 @@ pipeline {
     }
 
     // Pulling the image from the container repository
-    stage('Pull') {
+/*    stage('Pull') {
       steps {
         echo 'pulling container image from repository>>>'
         sh 'docker login -u rp1sne22 -p dckr_pat_gi6co2PnC5xTtoElVINANoHAAt4 docker.io'
@@ -39,13 +39,14 @@ pipeline {
         echo 'pulling successfull!'
       }
     }
-
-    // Deploying the container to test environment (webserver machine)
+*/
+    // Starting the container in test environment (webserver_test machine)
     stage('Deploy') {
       steps {
-        echo 'attempting container run on port 9090>>>'
-        sh 'yes | docker-compose -f docker-compose-deploy.yml up -d'
-        echo 'containers now running!'
+        //echo 'attempting container run on port 9090>>>'
+        //sh 'yes | docker-compose -f docker-compose-deploy.yml up -d'
+        sh 'docker run --name dvna -p 9090:9090 -d appsecco/dvna:sqlite'
+        //echo 'containers now deployed and running!'
         echo 'container was successfully deployed to test server!!!'
         echo 'you can now test the application on http://10.1.1.40:9090 >>>'
       }
