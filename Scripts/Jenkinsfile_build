@@ -46,7 +46,7 @@ pipeline {
         echo 'now building container image>>>'
 
         sh '''
-        docker build -t dvna-sne22-rp1 -f Dockerfile-dev .
+        docker build -t dvna-sne22-rp1 -f Dockerfile .
         '''
 
         echo 'container image successfully built!'
