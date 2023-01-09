@@ -25,6 +25,8 @@ pipeline {
       steps {
         echo 'removing previous container version>>>'
         sh 'docker-compose -f docker-compose-deploy.yml down | true'
+        sh 'docker rm -f $(docker ps -a -q)'
+        sh 'docker rmi $(docker images -q)'
         sh 'sudo docker image prune -a'
         echo 'old and running version of container was successfully removed!'
       }
