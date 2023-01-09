@@ -35,7 +35,7 @@ pipeline {
       steps {
         echo 'pulling container image from repository>>>'
         sh 'docker login -u rp1sne22 -p dckr_pat_gi6co2PnC5xTtoElVINANoHAAt4 docker.io'
-        sh 'docker pull rp1sne22/dvna-sne22-rp1:1.2'
+        sh 'docker pull rp1sne22/dvna-sne22-rp1:1.3'
         echo 'pulling successfull!'
       }
     }
