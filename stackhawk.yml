@@ -1,0 +1,13 @@
+# -- stackhawk configuration for dvna-sne22-rp1 --
+app:
+  # -- An applicationId obtained from the StackHawk platform. --
+  applicationId: 0804ed0f-209e-4f4f-ac14-4d0dd01a5222 # (required)
+  # -- The environment for the applicationId defined in the StackHawk platform. --
+  env: Pre-Production # (required)
+  # -- The url of your application to scan --
+  host: http://localhost:9001 # (required)
+
+hawk:
+  startupTimeoutMinutes: 1
+  spider:
+    base: false
