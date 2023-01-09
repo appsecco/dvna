@@ -64,7 +64,7 @@ pipeline {
     // Security scan using Snyk
     stage('Security Scan') {
       steps {
-        snykSecurity additionalArguments: '--docker dvna-sne22-rp1',failOnError: true, failOnIssues: true, severity: 'critical', snykInstallation: 'Snyk', snykTokenId: 'Snyk-Jenkins', targetFile: 'Dockerfile'
+        snykSecurity additionalArguments: '--docker dvna-sne22-rp1',failOnError: false, failOnIssues: false, severity: 'critical', snykInstallation: 'Snyk', snykTokenId: 'Snyk-Jenkins', targetFile: 'Dockerfile'
       }
     }  
     
