@@ -1,0 +1,94 @@
+pipeline {
+  agent {label 'webserver'}
+
+  stages {
+
+    stage('Send Start Alert') {
+      steps {
+        script {
+          // Get the user who launched the job
+          //wrap([$class: 'BuildUser']) {
+          //  def user = env.BUILD_USER
+          //}
+          // Send start notification
+          telegramSend(
+            token: '5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI',
+            chatId: '-688306623',
+            message: "The job Deploy to test environment has started and is currently running."
+          )
+        }
+      }
+    }
+
+    // Removing previous and running versions of the container image
+    stage('Clean') {
+      steps {
+        echo 'removing previous container version>>>'
+        sh 'docker-compose -f docker-compose-deploy.yml down | true'
+        sh 'sudo docker image prune -a'
+        echo 'old and running version of container was successfully removed!'
+      }
+    }
+
+    // Pulling the image from the container repository
+    stage('Pull') {
+      steps {
+        echo 'pulling container image from repository>>>'
+        sh 'docker login -u rp1sne22 -p dckr_pat_gi6co2PnC5xTtoElVINANoHAAt4 docker.io'
+        sh 'docker pull rp1sne22/dvna-sne22-rp1:1.2'
+        echo 'pulling successfull!'
+      }
+    }
+
+    // Deploying the container to test environment (webserver machine)
+    stage('Deploy') {
+      steps {
+        echo 'attempting container run on port 9090>>>'
+        sh 'yes | docker-compose -f docker-compose-deploy.yml up -d'
+        echo 'containers now running!'
+        echo 'container was successfully deployed to test server!!!'
+        echo 'you can now test the application on http://10.1.1.40:9090 >>>'
+      }
+    }
+
+    stage ("Run DAST Test") {
+      environment {
+        HAWK_API_KEY = credentials('Hawk_API_KEY')
+      }
+      steps {
+        sh '''
+          docker run -v /var/lib/jenkins/workspace/'RP1 Deploy To Test Environment Job':/hawk:rw -t \
+            -e API_KEY=${HAWK_API_KEY} \
+            -e NO_COLOR=true \
+            stackhawk/hawkscan
+        '''
+      }
+    }
+  }
+
+  // Sending Notification upon job completion
+  post {
+        success {
+            script {
+                // Send success notification
+                telegramSend(
+                    token: '5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI',
+                    chatId: '-688306623',
+                    message: "The job Deploy to test environment has completed successfully."
+                )
+            }
+        }
+        failure {
+            script {
+                // Get the cause of the failure
+                def failureCause = currentBuild.getResult().toString()
+                // Send failure notification
+                telegramSend(
+                    token: '5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI',
+                    chatId: '-688306623',
+                    message: "The job Deploy to test environment has failed due to ${failureCause}."
+                )
+            }
+        }
+    }
+}

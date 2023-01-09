@@ -1,0 +1,125 @@
+pipeline {
+  agent any
+
+  stages {
+
+    stage('Send Start Alert') {
+      steps {
+        script {
+          telegramSend(
+            token: '5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI',
+            chatId: '-688306623',
+            message: "The job RP1 Build and Test has started and is currently running."
+          )
+        }
+      }
+    }
+
+    stage('Dependency check') {
+      steps {
+        dependencyCheck additionalArguments: '--disableYarnAudit --format HTML', odcInstallation: 'Dependency Check'
+      }
+    }
+
+    // Building and Testing the application.
+    stage('Install') {
+      steps {
+        sh '''
+        sudo apt-get update
+        sudo apt purge npm -y
+        sudo apt install npm -y
+        sudo docker info
+        '''
+        echo 'necessary updates and installation check completed>>>'
+      }
+    }
+
+    stage('Build') {
+      steps {
+
+        sh'''
+        docker rm -f dvna-app | true
+        docker rmi dvna-sne22-rp1 | true
+        '''
+
+        echo 'purged previous build instances!!!'
+        echo 'now building container image>>>'
+
+        sh '''
+        docker build -t dvna-sne22-rp1 -f Dockerfile-dev .
+        '''
+
+        echo 'container image successfully built!'
+      }
+    }
+    
+    // Testing the container run-time
+    stage('Test') {
+      steps {
+        sh 'sudo docker-compose -f docker-compose-build.yml up -d'
+        echo 'application started'
+      }
+    }
+    
+    // Security scan using Snyk
+    stage('Security Scan') {
+      steps {
+        snykSecurity additionalArguments: '--docker dvna-sne22-rp1',failOnError: true, failOnIssues: true, severity: 'critical', snykInstallation: 'Snyk', snykTokenId: 'Snyk-Jenkins', targetFile: 'Dockerfile'
+      }
+    }  
+    
+    
+    // Pushing application and it's artifacts to container repository
+    stage('Push') {
+      steps {
+        echo 'now pushing working image to dockerhub...'
+        
+        sh '''
+        docker login -u rp1sne22 -p dckr_pat_gi6co2PnC5xTtoElVINANoHAAt4 docker.io
+        docker tag dvna-sne22-rp1 rp1sne22/dvna-sne22-rp1:1.2
+        docker push rp1sne22/dvna-sne22-rp1:1.2
+        '''
+        
+        echo 'container image push was successfull>>>'
+      }
+    }
+    
+    // Deleting the container from the jenkins agent node
+    stage('Cleanup') {
+      steps {
+        echo 'initializing test server cleanup...'
+        sh 'sudo docker-compose -f docker-compose-build.yml down'
+        echo 'removed container runtime'
+        sh 'docker image prune -a'
+        echo 'removed docker image'
+      } 
+    } 
+  }
+
+  // Sending Notification upon job completion
+  post {
+    success {
+      script {
+        // Send success notification
+        telegramSend(
+          token: '5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI',
+          chatId: '-688306623',
+          message: "The job RP1 Build and Test has completed successfully."
+        )
+      }
+    }
+    
+    failure {
+      script {
+        // Get the cause of the failure
+        def failureCause = currentBuild.getResult().toString()
+        // Send failure notification
+        telegramSend(
+          token: '5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI',
+          chatId: '-688306623',
+          message: "The job RP1 Build and Test has failed due to ${failureCause}."
+        )
+      }
+    }
+  }
+}
