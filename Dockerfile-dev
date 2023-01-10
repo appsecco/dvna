@@ -4,6 +4,8 @@
 FROM node:carbon
 LABEL MAINTAINER "Subash SN"
 
+COPY . .
+
 WORKDIR /app
 
 RUN npm install -g nodemon
