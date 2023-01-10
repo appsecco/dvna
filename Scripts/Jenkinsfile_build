@@ -76,8 +76,8 @@ pipeline {
         
         sh '''
         docker login -u rp1sne22 -p dckr_pat_gi6co2PnC5xTtoElVINANoHAAt4 docker.io
-        docker tag dvna-sne22-rp1 rp1sne22/dvna-sne22-rp1:1.3
-        docker push rp1sne22/dvna-sne22-rp1:1.3
+        docker tag dvna-sne22-rp1 rp1sne22/dvna-sne22-rp1:1.4
+        docker push rp1sne22/dvna-sne22-rp1:1.4
         '''
         
         echo 'container image push was successfull>>>'
