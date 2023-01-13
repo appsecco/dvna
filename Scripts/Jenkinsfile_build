@@ -52,6 +52,15 @@ pipeline {
         echo 'container image successfully built!'
       }
     }
+
+    // Vault Implementation
+    stage('Fetch Credential'){
+    withCredentials([vaultString(credentialsId: 'Vault_MySQL_DB', variable: 'env')]) {
+    // some block
+        sh 'echo $env > /home/sne22/env/vars.env'
+        }
+    }
+
     
     // Testing the container run-time
     stage('Test') {

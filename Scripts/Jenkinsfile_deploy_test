@@ -42,6 +42,15 @@ pipeline {
       }
     }
 */
+
+    // Vault Implementation
+    stage('Fetch Credential'){
+    withCredentials([vaultString(credentialsId: 'Vault_MySQL_DB', variable: 'env')]) {
+    // some block
+        sh 'echo $env > /home/sne22/env/vars.env'
+        }
+    }
+
     // Starting the container in test environment (webserver_test machine)
     stage('Deploy') {
       steps {
@@ -87,7 +96,7 @@ pipeline {
                 def failureCause = currentBuild.getResult().toString()
                 // Send failure notification
                 telegramSend(
-                    token: '5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI',
+                    t\oken: '5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI',
                     chatId: '-688306623',
                     message: "The job Deploy to test environment has failed due to ${failureCause}."
                 )
