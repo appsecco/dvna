@@ -55,9 +55,11 @@ pipeline {
 
     // Vault Implementation
     stage('Fetch Cred'){
-      withCredentials([vaultString(credentialsId: 'Vault_MySQL_DB', variable: 'env')]) {
+      steps {
+        withCredentials([vaultString(credentialsId: 'Vault_MySQL_DB', variable: 'env')]) {
     // some block
         sh 'echo $env > /home/sne22/env/vars.env'
+        }
       }
     }
 
