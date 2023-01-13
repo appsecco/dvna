@@ -44,11 +44,12 @@ pipeline {
 */
 
     // Vault Implementation
-    stage('Fetch Credential'){
-    withCredentials([vaultString(credentialsId: 'Vault_MySQL_DB', variable: 'env')]) {
-    // some block
-        sh 'echo $env > /home/sne22/env/vars.env'
+    stage('Fetch Cred'){
+      steps {
+        withCredentials([vaultString(credentialsId: 'Vault_MySQL_DB', variable: 'env')]) {
+            sh 'echo $env > /home/sne22/env/vars.env'
         }
+      }
     }
 
     // Starting the container in test environment (webserver_test machine)
