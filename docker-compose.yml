@@ -3,6 +3,8 @@
 version: "2.1"
 services:
   app:
+    networks:
+      - net
     build:
       context: ./
       dockerfile: Dockerfile-dev
@@ -16,8 +18,14 @@ services:
       - ./vars.env
 
   mysql-db:
-    image: mysql:5.7
+    networks:
+      - net
+    image: mysql:latest
     expose:
       - "3306"
     env_file:
       - ./vars.env
+
+networks:
+  net:
+    driver: bridge
