@@ -14,7 +14,7 @@ The application comes with a **developer friendly comprehensive guidebook** whic
 2. Instructions on exploiting the vulnerabilities
 3. Vulnerable code snippets and instructions on fixing vulnerabilities
 4. Recommendations for avoid such vulnerabilities
-5. References for learning more
+5. References for learning more   
 
 The blog post for this release is at https://blog.appsecco.com/damn-vulnerable-nodejs-application-dvna-by-appsecco-7d782d36dc1e
 
