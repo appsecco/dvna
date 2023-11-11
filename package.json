@@ -8,12 +8,13 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "preinstall": "echo \"install script running...\" && exit 1"
   },
   "author": "sns",
   "license": "MIT",
   "dependencies": {
-    "bcrypt": "^1.0.3",
+    "bcrypt": "^5.0.0",
     "csurf": "^1.9.0",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
@@ -23,10 +24,10 @@
     "flash": "^1.1.0",
     "libxmljs": "^0.19.1",
     "mathjs": "3.10.1",
-    "md5": "^2.2.1",
+    "md5": "^2.2.2",
     "morgan": "^1.9.0",
     "mysql2": "^1.4.2",
-    "node-serialize": "0.0.4",
+    "node-serialize": "0.0.3",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "sequelize": "^4.13.10",
